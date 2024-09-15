@@ -106,7 +106,7 @@ fun NewsScreen(
                 )
             ) { entry ->
                 val arguments = entry.toRoute<Route.NewsDetailRoute>()
-                NewsDetailScreen(newsDetailRoute = arguments)
+                NewsDetailScreen(innerPadding = innerPadding, newsDetailRoute = arguments)
             }
         }
     }
@@ -277,16 +277,20 @@ fun NewsItem(
  */
 @Composable
 fun NewsDetailScreen(
+    innerPadding: PaddingValues,
     newsDetailRoute: Route.NewsDetailRoute
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .consumeWindowInsets(innerPadding)
+            .padding(innerPadding),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "${newsDetailRoute.article.title} with the author of ${newsDetailRoute.article.author}"
-        )
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "${newsDetailRoute.article.title} with the author of ${newsDetailRoute.article.author}"
+            )
+        }
     }
 }
 

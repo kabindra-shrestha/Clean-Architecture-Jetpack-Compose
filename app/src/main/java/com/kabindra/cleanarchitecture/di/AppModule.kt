@@ -1,5 +1,6 @@
 package com.kabindra.cleanarchitecture.di
 
+import androidx.compose.material3.SnackbarHostState
 import com.kabindra.cleanarchitecture.data.repository.remote.NewsRepositoryImpl
 import com.kabindra.cleanarchitecture.data.source.remote.KtorApiService
 import com.kabindra.cleanarchitecture.data.source.remote.NewsDataSource
@@ -18,11 +19,15 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+
+val provideAppModule = module {
+    single { SnackbarHostState() }
+}
 
 val provideHttpClientModule = module {
     single {
@@ -57,6 +62,7 @@ val provideHttpClientModule = module {
 val provideApiServiceModule = module {
     singleOf(::KtorApiService)
 }
+
 val provideDataSourceModule = module {
     singleOf(::NewsDataSource)
 }
@@ -74,6 +80,7 @@ val provideViewModelModule = module {
 }
 
 val appModule = listOf(
+    provideAppModule,
     provideHttpClientModule,
     provideApiServiceModule,
     provideDataSourceModule,

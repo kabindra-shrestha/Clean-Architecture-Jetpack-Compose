@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.startup.runtime)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.bundles.koin)
     implementation(libs.bundles.ktor)

@@ -78,4 +78,8 @@ dependencies {
 
     implementation(libs.bundles.koin)
     implementation(libs.bundles.ktor)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.ktor)
+
 }

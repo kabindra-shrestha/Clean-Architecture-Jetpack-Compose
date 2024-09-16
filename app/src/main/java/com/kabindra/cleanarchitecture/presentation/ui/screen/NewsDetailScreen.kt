@@ -1,19 +1,16 @@
-@file:OptIn(KoinExperimentalAPI::class)
-
 package com.kabindra.cleanarchitecture.presentation.ui.screen
 
 import Route
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,15 +28,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.ImageRequest.*
+import coil3.request.ImageRequest.Builder
 import coil3.request.crossfade
 import com.kabindra.cleanarchitecture.R
 import com.kabindra.cleanarchitecture.domain.entity.Article
 import com.kabindra.cleanarchitecture.domain.entity.Source
 import org.koin.compose.koinInject
-import org.koin.core.annotation.KoinExperimentalAPI
 
 /**
  * Main composable function for displaying the news detail screen.
@@ -53,7 +47,8 @@ fun NewsDetailScreen(
     newsDetailRoute: Route.NewsDetailRoute
 ) {
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .consumeWindowInsets(innerPadding)
             .padding(innerPadding),
         contentAlignment = Alignment.Center
@@ -94,7 +89,10 @@ fun NewsDetail(
                     placeholder = painterResource(R.drawable.ic_launcher_background),
                     contentDescription = stringResource(R.string.app_name),
                     contentScale = ContentScale.FillWidth,
-                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(5.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(5.dp))
+                        .aspectRatio(16f / 9f)
                 )
             }
 

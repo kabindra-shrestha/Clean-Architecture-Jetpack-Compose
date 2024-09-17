@@ -19,10 +19,13 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import java.util.concurrent.TimeUnit
 
 val provideAppModule = module {
     single { SnackbarHostState() }
@@ -56,6 +59,41 @@ val provideHttpClientModule = module {
             }
         }
     }
+
+    /*val connectTimeout: Long = 60 // 20s
+    val readTimeout: Long = 60 // 20s
+    val writeTimeout: Long = 180 // 20s
+
+    fun provideHttpClient(): OkHttpClient {
+        val okHttpClientBuilder = OkHttpClient().newBuilder()
+            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+            .readTimeout(readTimeout, TimeUnit.SECONDS)
+            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            level = if (isDebug) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
+        }
+
+        return okHttpClientBuilder.addInterceptor(httpLoggingInterceptor).build()
+    }
+
+    fun provideRetrofit(okHttpClient: OkHttpClient, baseUrl: String): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    single { provideHttpClient(get(), get()) }
+    single {
+        val baseUrl = androidContext().getString(R.string.BASE_URL)
+        provideRetrofit(get(), baseUrl)
+    }*/
 }
 
 val provideApiServiceModule = module {

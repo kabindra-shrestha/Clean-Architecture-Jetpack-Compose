@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -79,6 +78,7 @@ dependencies {
 
     implementation(libs.bundles.koin)
     implementation(libs.bundles.ktor)
+    implementation(libs.bundles.retrofit)
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.ktor)

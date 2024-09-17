@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -28,8 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import coil3.request.ImageRequest.Builder
-import coil3.request.crossfade
 import com.kabindra.cleanarchitecture.R
 import com.kabindra.cleanarchitecture.domain.entity.Article
 import com.kabindra.cleanarchitecture.domain.entity.Source
@@ -82,10 +79,7 @@ fun NewsDetail(
                 // Placeholder image loading implementation
                 // If you don't want to use coil, comment out this part
                 AsyncImage(
-                    model = Builder(LocalContext.current)
-                        .data(article.urlToImage)
-                        .crossfade(true)
-                        .build(),
+                    model = article.urlToImage,
                     placeholder = painterResource(R.drawable.ic_launcher_background),
                     contentDescription = stringResource(R.string.app_name),
                     contentScale = ContentScale.FillWidth,

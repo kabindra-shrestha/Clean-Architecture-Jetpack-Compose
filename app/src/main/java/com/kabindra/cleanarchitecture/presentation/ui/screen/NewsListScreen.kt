@@ -117,7 +117,7 @@ fun NewsListScreen(
             }
         }
 
-        is NetworkResult.Error -> Text("Error: ${(newsState as NetworkResult.Error).exception.message}")
+        is NetworkResult.Error -> Text("Error: ${(newsState as NetworkResult.Error)}")
     }
 }
 

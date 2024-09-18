@@ -11,11 +11,17 @@ import kotlinx.coroutines.flow.flow
 class NewsRepositoryImpl(private val newsDataSource: NewsDataSource) : NewsRepository {
     override suspend fun getNews(): Flow<NetworkResult<News>> = flow {
         try {
-            val userDto = newsDataSource.getNews()
-            emit(NetworkResult.Success(userDto.toDomain()))
+            /*val newsDto = newsDataSource.getNews()
+            emit(NetworkResult.Success(newsDto.toDomain()))*/
+            val newsDto = newsDataSource.getNews()
+            if (newsDto.isSuccessful) {
+                emit(NetworkResult.Success(newsDto.body()!!.toDomain()))
+            } else {
+                emit(NetworkResult.Error("Error: Response"))
+            }
         } catch (e: Exception) {
             println("ERROR: $e")
-            emit(NetworkResult.Error(e))
+            emit(NetworkResult.Error(e.message!!))
         }
     }
 }

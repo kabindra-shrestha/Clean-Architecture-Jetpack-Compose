@@ -1,9 +1,12 @@
 package com.kabindra.cleanarchitecture.di
 
 import androidx.compose.material3.SnackbarHostState
+import com.kabindra.cleanarchitecture.BuildConfig
+import com.kabindra.cleanarchitecture.R
 import com.kabindra.cleanarchitecture.data.repository.remote.NewsRepositoryImpl
 import com.kabindra.cleanarchitecture.data.source.remote.KtorApiService
 import com.kabindra.cleanarchitecture.data.source.remote.NewsDataSource
+import com.kabindra.cleanarchitecture.data.source.remote.RetrofitApiService
 import com.kabindra.cleanarchitecture.domain.repository.remote.NewsRepository
 import com.kabindra.cleanarchitecture.domain.usecase.remote.GetNewsUseCase
 import com.kabindra.cleanarchitecture.presentation.viewmodel.NewsViewModel
@@ -20,12 +23,14 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
-import java.util.concurrent.TimeUnit
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 val provideAppModule = module {
     single { SnackbarHostState() }
@@ -54,24 +59,24 @@ val provideHttpClientModule = module {
                 level = LogLevel.ALL
             }
             defaultRequest {
-                url("BASE_URL")
+                url(androidContext().getString(R.string.BASE_URL))
                 contentType(ContentType.Application.Json)
             }
         }
     }
 
-    /*val connectTimeout: Long = 60 // 20s
-    val readTimeout: Long = 60 // 20s
-    val writeTimeout: Long = 180 // 20s
+//    val connectTimeout: Long = 60 // 20s
+//    val readTimeout: Long = 60 // 20s
+//    val writeTimeout: Long = 180 // 20s
 
     fun provideHttpClient(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient().newBuilder()
-            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
-            .readTimeout(readTimeout, TimeUnit.SECONDS)
-            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+//            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+//            .readTimeout(readTimeout, TimeUnit.SECONDS)
+//            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
 
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-            level = if (isDebug) {
+            level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
             } else {
                 HttpLoggingInterceptor.Level.NONE
@@ -89,15 +94,20 @@ val provideHttpClientModule = module {
             .build()
     }
 
-    single { provideHttpClient(get(), get()) }
+    single { provideHttpClient() }
     single {
         val baseUrl = androidContext().getString(R.string.BASE_URL)
         provideRetrofit(get(), baseUrl)
-    }*/
+    }
 }
 
 val provideApiServiceModule = module {
     singleOf(::KtorApiService)
+
+    fun provideApiService(retrofit: Retrofit): RetrofitApiService {
+        return retrofit.create(RetrofitApiService::class.java)
+    }
+    single { provideApiService(get()) }
 }
 
 val provideDataSourceModule = module {

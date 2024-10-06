@@ -4,7 +4,7 @@ import com.kabindra.cleanarchitecture.data.model.NewsDto
 import retrofit2.Response
 
 /*class NewsDataSource(private val apiService: KtorApiService) {
-    suspend fun getNews(): NewsDto {
+    suspend fun getNews(): HttpResponse {
         return apiService.fetchNews()
     }
 }*/

@@ -1,3 +1,8 @@
+rootProject.name = "Jetpack Compose Clean Architecture"
+
+include(":app")
+include(":in-app-update")
+
 pluginManagement {
     repositories {
         google {
@@ -18,7 +23,3 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "JetpackComposeCleanArchitecture"
-include(":app")
- 

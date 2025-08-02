@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">JetpackComposeCleanArchitecture</string>
-    <string name="BASE_URL">https://newsapi.org/</string>
+    <string name="app_name">Jetpack Compose Clean Architecture</string>
+    <string name="fcm_default_notification_id">1</string>
+    <string name="fcm_default_notification_channel_id">1</string>
+    <string name="fcm_default_notification_channel_name">Jetpack Compose Clean Architecture</string>
+    <string name="fcm_default_notification_channel_description">Jetpack Compose Clean Architecture</string>
 </resources>

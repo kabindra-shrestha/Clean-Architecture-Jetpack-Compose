@@ -20,26 +20,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kabindra.clean.architecture.data.request.LoginRefreshUserDetailsDataRequest
-import com.kabindra.clean.architecture.domain.entity.LoginRefreshUserDetails
 import com.kabindra.clean.architecture.domain.entity.User
 import com.kabindra.clean.architecture.presentation.ui.component.AppIcon
 import com.kabindra.clean.architecture.presentation.ui.component.LoadingIndicator
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
-import com.kabindra.clean.architecture.presentation.viewmodel.remote.LoginViewModel
-import com.kabindra.clean.architecture.presentation.viewmodel.room.AuthenticationRoomViewModel
-import com.kabindra.clean.architecture.presentation.viewmodel.room.UserRoomViewModel
+import com.kabindra.clean.architecture.presentation.viewmodel.remote.SplashEvent
+import com.kabindra.clean.architecture.presentation.viewmodel.remote.SplashViewModel
 import com.kabindra.clean.architecture.utils.Connectivity
 import com.kabindra.clean.architecture.utils.constants.ErrorType.Companion.ERROR_TITLE_VERSION_CHECK
 import com.kabindra.clean.architecture.utils.constants.ErrorType.Companion.ERROR_VERSION_CHECK
-import com.kabindra.clean.architecture.utils.constants.ResponseType
 import com.kabindra.clean.architecture.utils.enums.subscribeToTopics
 import com.kabindra.clean.architecture.utils.enums.unsubscribeFromTopics
 import com.kabindra.clean.architecture.utils.error.GlobalErrorDialog
 import com.kabindra.clean.architecture.utils.getPlatform
 import com.kabindra.clean.architecture.utils.getToken
-import com.kabindra.clean.architecture.utils.ktor.Result
-import com.kabindra.clean.architecture.utils.ktor.ResultUIState
 import com.kabindra.clean.architecture.utils.success.GlobalSuccessDialog
 import com.kabindra.inappupdate.UpdateAvailableDialog
 import com.kabindra.inappupdate.UpdateDownloadDialog
@@ -55,9 +51,7 @@ private var firebaseToken = ""
 
 @Composable
 fun SplashScreen(
-    authenticationRoomViewModel: AuthenticationRoomViewModel = koinViewModel(),
-    loginViewModel: LoginViewModel = koinViewModel(),
-    userRoomViewModel: UserRoomViewModel = koinViewModel(),
+    splashViewModel: SplashViewModel = koinViewModel(),
     innerPadding: PaddingValues,
     onNavigateLogin: () -> Unit,
     onNavigateDashboard: () -> Unit
@@ -65,12 +59,8 @@ fun SplashScreen(
 
     val connectivity = remember { Connectivity() }
     val isConnected by connectivity.isConnectedState.collectAsState()
-    val authenticationLoggedApiState by authenticationRoomViewModel.authenticationLoggedApiState.collectAsState()
-    val loginRefreshUserDetailsState by loginViewModel.loginRefreshUserDetailsState.collectAsState()
-    val userState by userRoomViewModel.userState.collectAsState()
-    var resultsUIState by remember { mutableStateOf(ResultUIState()) }
+    val splashState by splashViewModel.splashState.collectAsStateWithLifecycle()
     var isForcedUpdate by remember { mutableStateOf(false) }
-    var isLoggedApi = false
     var userInfo: User? = null
     var userData by remember { mutableStateOf(userInfo) }
 
@@ -86,10 +76,9 @@ fun SplashScreen(
     DisposableEffect(Unit) {
         onDispose {
             // Reset the relevant states
-            authenticationRoomViewModel.resetStates()
-            loginViewModel.resetStates()
+            splashViewModel.resetStates()
 
-            resultsUIState = ResultUIState()
+            // resultsUIState = ResultUIState()
         }
     }
 
@@ -101,7 +90,7 @@ fun SplashScreen(
             title = "No Network Connection",
             message = "Please check you internet connection.\nPlease try again.",
             onDismiss = {
-                resultsUIState = ResultUIState()
+                // resultsUIState = ResultUIState()
             },
         )
         return
@@ -138,7 +127,8 @@ fun SplashScreen(
             },
             onUpdateNotAvailable = {
                 // Proceed app
-                authenticationRoomViewModel.getIsLogged()
+                // authenticationRoomViewModel.getIsLogged()
+                splashViewModel.onEvent(SplashEvent.GetIsLogged)
             },
             onCancelled = {
                 if (isForcedUpdate) {
@@ -146,7 +136,8 @@ fun SplashScreen(
                     exitApp()
                 } else {
                     // Proceed app
-                    authenticationRoomViewModel.getIsLogged()
+                    // authenticationRoomViewModel.getIsLogged()
+                    splashViewModel.onEvent(SplashEvent.GetIsLogged)
                 }
             },
             onFailed = {
@@ -155,7 +146,8 @@ fun SplashScreen(
                     exitApp()
                 } else {
                     // Proceed app
-                    authenticationRoomViewModel.getIsLogged()
+                    // authenticationRoomViewModel.getIsLogged()
+                    splashViewModel.onEvent(SplashEvent.GetIsLogged)
                 }
             },
             onDownloadProgress = { bytesDownloaded: Long, totalBytes: Long -> },
@@ -180,7 +172,7 @@ fun SplashScreen(
                 .align(Alignment.Center)
         )
 
-        if (resultsUIState.isLoading) {
+        if (splashState.isLoading) {
             LoadingIndicator(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -204,137 +196,58 @@ fun SplashScreen(
         )*/
     }
 
-    LaunchedEffect(authenticationLoggedApiState) {
-        when (authenticationLoggedApiState) {
-            is Result.Initial -> Unit
-
-            is Result.Loading -> {
-                resultsUIState = ResultUIState().copy(isLoading = true)
-            }
-
-            is Result.Success -> {
-                resultsUIState = ResultUIState().copy(isSuccess = false)
-
-                isLoggedApi =
-                    (authenticationLoggedApiState as Result.Success<Boolean>).data
-
-                if (isLoggedApi) {
-                    user(userRoomViewModel)
-                } else {
-                    onNavigateLogin()
-                }
-            }
-
-            is Result.Error -> {
-                resultsUIState = ResultUIState().copy(
-                    isError = true,
-                    errorType = ResponseType.None,
-                    errorStatusCode = (authenticationLoggedApiState as Result.Error).error.statusCode,
-                    errorTitle = "",
-                    errorMessage = (authenticationLoggedApiState as Result.Error).error.message
-                )
-            }
-        }
+    if (splashState.isLogged == true) {
+        splashViewModel.onEvent(SplashEvent.GetUser)
+    } else {
+        onNavigateLogin()
     }
 
-    LaunchedEffect(userState) {
-        when (userState) {
-            is Result.Initial -> Unit
-
-            is Result.Loading -> {
-                resultsUIState = ResultUIState().copy(isLoading = false)
-            }
-
-            is Result.Success -> {
-                resultsUIState = ResultUIState().copy(isLoading = true)
-
-                val user: User =
-                    (userState as Result.Success<User>).data
-
-                userInfo = user
-                userData = userInfo
-                userData?.firebase_topics?.takeIf { it.isNotEmpty() }?.let { topics ->
-                    unsubscribeFromTopics(topics)
-                }
-                loginRefreshUserDetails(
-                    loginViewModel,
-                    firebaseToken
-                )
-            }
-
-            is Result.Error -> {
-                resultsUIState = ResultUIState().copy(
-                    isError = true,
-                    errorType = ResponseType.None,
-                    errorStatusCode = (userState as Result.Error).error.statusCode,
-                    errorTitle = "",
-                    errorMessage = (userState as Result.Error).error.message
-                )
-            }
+    LaunchedEffect(splashState.user) {
+        splashState.user?.firebase_topics?.takeIf { it.isNotEmpty() }?.let { topics ->
+            unsubscribeFromTopics(topics)
         }
+
+        splashViewModel.onEvent(
+            SplashEvent.GetLoginRefreshUserDetails(
+                LoginRefreshUserDetailsDataRequest(firebaseToken)
+            )
+        )
     }
 
-    LaunchedEffect(loginRefreshUserDetailsState) {
-        when (loginRefreshUserDetailsState) {
-            is Result.Initial -> Unit
-
-            is Result.Loading -> {
-                resultsUIState = ResultUIState().copy(isLoading = true)
+    LaunchedEffect(splashState.loginRefreshUserDetails) {
+        splashState.loginRefreshUserDetails?.response?.user_details?.firebase_topics.takeIf { !it.isNullOrEmpty() }
+            ?.let { topics ->
+                subscribeToTopics(topics)
             }
 
-            is Result.Success -> {
-                resultsUIState = ResultUIState().copy(isSuccess = false)
+        val features = splashState.loginRefreshUserDetails?.response?.features
+        val uses = splashState.loginRefreshUserDetails?.response?.featuresUsed
 
-                val refreshUserDetails: LoginRefreshUserDetails =
-                    (loginRefreshUserDetailsState as Result.Success<LoginRefreshUserDetails>).data
-
-                refreshUserDetails.response?.user_details?.firebase_topics.takeIf { !it.isNullOrEmpty() }
-                    ?.let { topics ->
-                        subscribeToTopics(topics)
-                    }
-
-                val features = refreshUserDetails.response?.features
-                val uses = refreshUserDetails.response?.featuresUsed
-
-                if (features == null || uses == null) {
-                    onNavigateDashboard()
-                    return@LaunchedEffect
-                }
-
-                // Go To Home Screen
-            }
-
-            is Result.Error -> {
-                resultsUIState = ResultUIState().copy(
-                    isError = true,
-                    errorType = ResponseType.None,
-                    errorStatusCode = (loginRefreshUserDetailsState as Result.Error).error.statusCode,
-                    errorTitle = "",
-                    errorMessage = (loginRefreshUserDetailsState as Result.Error).error.message
-                )
-            }
+        if (features == null || uses == null) {
+            onNavigateDashboard()
+            return@LaunchedEffect
         }
+
+        // Go To Home Screen
     }
 
-    if (resultsUIState.isSuccess) {
+    if (splashState.isSuccess) {
         GlobalSuccessDialog(
             isVisible = true,
             isAction = true,
-            message = resultsUIState.successMessage,
+            message = splashState.successMessage,
             onDismiss = { })
     }
 
-    if (resultsUIState.isError) {
+    if (splashState.isError) {
         GlobalErrorDialog(
             isVisible = true,
             isAction = true,
-            statusCode = resultsUIState.errorStatusCode,
-            title = resultsUIState.errorTitle,
-            message = resultsUIState.errorMessage,
+            statusCode = splashState.errorStatusCode,
+            title = splashState.errorTitle,
+            message = splashState.errorMessage,
             onDismiss = {
-                resultsUIState = ResultUIState()
-
-                authenticationRoomViewModel.getIsLogged()
+                splashViewModel.onEvent(SplashEvent.GetIsLogged)
             },
             onNavigateLogin = { onNavigateLogin() })
     }
@@ -365,7 +278,7 @@ fun SplashScreen(
 
                 isForcedUpdate = false
 
-                authenticationRoomViewModel.getIsLogged()
+                splashViewModel.onEvent(SplashEvent.GetIsLogged)
             }
         )
     }
@@ -389,17 +302,4 @@ fun SplashScreen(
             }
         )
     }
-}
-
-private fun loginRefreshUserDetails(
-    loginViewModel: LoginViewModel,
-    fcmToken: String
-) {
-    loginViewModel.getLoginRefreshUserDetails(LoginRefreshUserDetailsDataRequest(fcmToken))
-}
-
-private fun user(
-    userRoomViewModel: UserRoomViewModel,
-) {
-    userRoomViewModel.getUser()
 }

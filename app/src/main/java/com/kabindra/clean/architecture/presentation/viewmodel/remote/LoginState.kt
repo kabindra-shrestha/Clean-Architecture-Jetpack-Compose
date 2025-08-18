@@ -1,9 +1,12 @@
-package com.kabindra.clean.architecture.utils.ktor
+package com.kabindra.clean.architecture.presentation.viewmodel.remote
 
+import com.kabindra.clean.architecture.domain.entity.LoginCheckUser
+import com.kabindra.clean.architecture.domain.entity.LoginRefreshUserDetails
+import com.kabindra.clean.architecture.domain.entity.LoginVerify
 import com.kabindra.clean.architecture.utils.constants.ConfirmationType
 import com.kabindra.clean.architecture.utils.constants.ResponseType
 
-open class ResultUIState(
+data class LoginState(
     val isLoading: Boolean = false,
     val isSuccess: Boolean = false,
     val isError: Boolean = false,
@@ -16,4 +19,7 @@ open class ResultUIState(
     val errorMessage: String = "",
     val confirmationType: ConfirmationType = ConfirmationType.None,
     val confirmationMessage: String = "",
+    val loginCheckUser: LoginCheckUser? = null,
+    val loginVerify: LoginVerify? = null,
+    val loginRefreshUserDetails: LoginRefreshUserDetails? = null
 )

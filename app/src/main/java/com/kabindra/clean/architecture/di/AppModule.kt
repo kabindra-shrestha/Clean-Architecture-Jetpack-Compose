@@ -25,6 +25,7 @@ import com.kabindra.clean.architecture.domain.usecase.room.UserRoomUseCase
 import com.kabindra.clean.architecture.presentation.viewmodel.remote.LoginViewModel
 import com.kabindra.clean.architecture.presentation.viewmodel.remote.LogoutViewModel
 import com.kabindra.clean.architecture.presentation.viewmodel.remote.RefreshTokenViewModel
+import com.kabindra.clean.architecture.presentation.viewmodel.remote.SplashViewModel
 import com.kabindra.clean.architecture.presentation.viewmodel.room.AuthenticationRoomViewModel
 import com.kabindra.clean.architecture.presentation.viewmodel.room.UserRoomViewModel
 import com.kabindra.clean.architecture.utils.constants.Header.Companion.HEADER_USER_DEVICE
@@ -236,6 +237,7 @@ val provideViewModelModule = module {
     viewModelOf(::LogoutViewModel)
     viewModelOf(::RefreshTokenViewModel)
     viewModelOf(::LogoutViewModel)
+    viewModelOf(::SplashViewModel)
 
     viewModelOf(::AuthenticationRoomViewModel)
     viewModelOf(::UserRoomViewModel)

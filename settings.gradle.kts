@@ -1,4 +1,4 @@
-rootProject.name = "Jetpack Compose Clean Architecture"
+rootProject.name = "JetpackComposeCleanArchitecture"
 
 include(":app")
 include(":in-app-update")

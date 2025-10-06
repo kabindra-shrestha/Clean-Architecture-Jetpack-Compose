@@ -3,6 +3,7 @@ package com.kabindra.clean.architecture.utils
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -20,8 +21,8 @@ data class TimerState(
 
 // Timer logic as a reusable function with start, pause, and reset functionality
 @Composable
-fun Timer(initialTime: Int): TimerState {
-    var time by remember { mutableStateOf(initialTime) }
+fun timer(initialTime: Int): TimerState {
+    var time by remember { mutableIntStateOf(initialTime) }
     var isRunning by remember { mutableStateOf(false) }
 
     // Coroutine to handle the timer countdown

@@ -8,7 +8,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.RingtoneManager
-import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.Builder
@@ -89,42 +88,24 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             ""
         }
 
-        val type = if (remoteMessage.data["type"] != null) {
-            remoteMessage.data["type"]
-        } else {
-            ""
-        }
-        val ticket_id = if (remoteMessage.data["ticket_id"] != null) {
-            remoteMessage.data["ticket_id"]
-        } else {
-            ""
-        }
-        val workflow = if (remoteMessage.data["workflow"] != null) {
-            remoteMessage.data["workflow"]
-        } else {
-            ""
-        }
-        val date = if (remoteMessage.data["date"] != null) {
-            remoteMessage.data["date"]
-        } else {
-            ""
+        val type = remoteMessage.data["type"] ?: ""
+        val ticketId = remoteMessage.data["ticket_id"] ?: ""
+        val workflow = remoteMessage.data["workflow"] ?: ""
+        val date = remoteMessage.data["date"] ?: ""
+
+        val channel = NotificationChannel(
+            channelId,
+            channelName,
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
+            description = channelDescription
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                channelName,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = channelDescription
-            }
-
-            notificationManager.createNotificationChannel(channel)
-        }
+        notificationManager.createNotificationChannel(channel)
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("type", type)
-        intent.putExtra("ticket_id", ticket_id)
+        intent.putExtra("ticket_id", ticketId)
         intent.putExtra("workflow", workflow)
         intent.putExtra("date", date)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

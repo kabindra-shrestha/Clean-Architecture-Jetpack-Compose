@@ -62,7 +62,8 @@ fun <T> ExpandableFabComponent(
                         .fillMaxSize()
                         .background(overlay.copy(alpha = 0.8f))
                         .clickable(
-                            interactionSource = MutableInteractionSource(), indication = null,
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
                             onClick = { expand = false })
                 } else {
                     modifier.fillMaxSize()

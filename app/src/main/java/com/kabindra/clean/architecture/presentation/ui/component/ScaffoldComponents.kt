@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.kabindra.clean.architecture.presentation.ui.screen.navigation.Route
+import com.kabindra.clean.architecture.presentation.ui.screen.navigation.LoginRoute
 import com.kabindra.clean.architecture.utils.enums.MenuType
 
 @Composable
@@ -86,7 +86,7 @@ fun TopAppBarWithBackComponent(
 @Composable
 fun BottomNavigationBarComponent(
     modifier: Modifier = Modifier,
-    selectedRoute: String = Route.LoginMainRoute::class.qualifiedName!!,
+    selectedRoute: String = LoginRoute::class.qualifiedName!!,
     onClick: (selectedSlug: String) -> Unit
 ) {
     NavigationBar {

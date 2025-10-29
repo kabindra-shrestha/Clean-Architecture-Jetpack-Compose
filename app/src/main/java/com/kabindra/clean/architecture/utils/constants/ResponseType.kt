@@ -6,5 +6,4 @@ sealed class ResponseType {
     data object LoginVerifyOTP : ResponseType()
     data object Logout : ResponseType()
     data object Refresh : ResponseType()
-
 }

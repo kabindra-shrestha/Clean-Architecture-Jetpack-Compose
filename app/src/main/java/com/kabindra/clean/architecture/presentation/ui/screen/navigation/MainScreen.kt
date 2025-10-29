@@ -1,17 +1,20 @@
 package com.kabindra.clean.architecture.presentation.ui.screen.navigation
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
-import androidx.navigation.toRoute
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.ui.NavDisplay
 import com.kabindra.clean.architecture.presentation.ui.screen.splash.DashboardScreen
 import com.kabindra.clean.architecture.presentation.ui.screen.splash.LoginScreen
 import com.kabindra.clean.architecture.presentation.ui.screen.splash.LoginVerifyOTPScreen
@@ -20,140 +23,114 @@ import com.kabindra.clean.architecture.presentation.ui.screen.splash.SplashScree
 import org.koin.compose.koinInject
 
 @Composable
-fun MainScreen(
-    navController: NavHostController = rememberNavController()
-) {
+fun MainScreen() {
     val snackBarHostState: SnackbarHostState = koinInject()
+
+    val backStack = rememberNavBackStack(SplashRoute)
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Route.SplashRoute,
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            composable<Route.SplashRoute> {
-                SplashScreen(
-                    innerPadding = innerPadding,
-                    onNavigateLogin = {
-                        navController.navigate(Route.LoginMainRoute) {
-                            popUpTo(Route.SplashRoute) { inclusive = true }
-                            launchSingleTop = true
-                        }
-                    },
-                    onNavigateDashboard = {
-                        navController.navigate(Route.DashboardRoute) {
-                            popUpTo(Route.SplashRoute) { inclusive = true }
-                            launchSingleTop = true
-                        }
-                    }
-                )
-            }
 
-            navigation<Route.LoginMainRoute>(startDestination = Route.LoginRoute) {
-                composable<Route.RegisterRoute> {
-                    /*RegisterScreen(
+        NavDisplay(
+            backStack = backStack,
+            onBack = { backStack.removeLastOrNull() },
+            entryProvider = entryProvider {
+                entry<SplashRoute> {
+                    SplashScreen(
+                        innerPadding = innerPadding,
                         onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginMainRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
+                            backStack.add(LoginRoute)
                         },
-                        onBackNavigate = { AppBackHandler(navController) }
-                    )*/
+                        onNavigateDashboard = {
+                            backStack.add(DashboardRoute)
+                        }
+                    )
+                }
+                entry<RegisterRoute> {
                     RegisterScreen(
                         innerPadding = innerPadding,
                         onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginMainRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
+                            backStack.add(LoginRoute)
                         }
                     )
                 }
-                composable<Route.LoginRoute> {
-                    /*LoginScreen(
-                        onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginMainRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
-                        },
-                        onNavigateLoginVerifyOTP = { username,
-                                                     appLoginCode ->
-                            navController.navigate(
-                                Route.LoginVerifyOTPRoute(
-                                    username = username,
-                                    appLoginCode = appLoginCode
-                                )
-                            )
-                        },
-                        onNavigateDashboard = {
-                            // Navigate To Dashboard
-                        }
-                    )*/
+                entry<LoginRoute> {
                     LoginScreen(
                         innerPadding = innerPadding,
                         onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginMainRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
+                            backStack.add(LoginRoute)
                         }
                     )
                 }
-
-                composable<Route.LoginVerifyOTPRoute> { entry ->
-                    val arguments = entry.toRoute<Route.LoginVerifyOTPRoute>()
-                    /*LoginVerifyOTPScreen(
-                        innerPadding = innerPadding,
-                        onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginMainRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
-                        },
-                        onNavigateDashboard = {
-                            // Navigate To Dashboard
-                        },
-                        onBackNavigate = {
-                            AppBackHandler(navController)
-                        },
-                        usernameArgument = arguments.username,
-                        appLoginCodeArgument = arguments.appLoginCode
-                    )*/
+                entry<LoginVerifyOTPRoute> {
                     LoginVerifyOTPScreen(
                         innerPadding = innerPadding,
                         onNavigateLogin = {
-                            navController.navigate(Route.LoginMainRoute) {
-                                popUpTo(Route.LoginVerifyOTPRoute) { inclusive = true }
-                                launchSingleTop = true
-                            }
+                            backStack.add(LoginRoute)
                         }
                     )
                 }
-            }
-
-            composable<Route.DashboardRoute> {
-                DashboardScreen(
-                    innerPadding = innerPadding,
-                    onNavigateLogin = {
-                        navController.navigate(Route.LoginMainRoute) {
-                            popUpTo(Route.DashboardRoute) { inclusive = true }
-                            launchSingleTop = true
-                        }
+                entry<DashboardRoute>(
+                    metadata = NavDisplay.transitionSpec {
+                        // Slide new content up, keeping the old content in place underneath
+                        slideInVertically(
+                            initialOffsetY = { it },
+                            animationSpec = tween(1000)
+                        ) togetherWith ExitTransition.KeepUntilTransitionsFinished
+                    } + NavDisplay.popTransitionSpec {
+                        // Slide old content down, revealing the new content in place underneath
+                        EnterTransition.None togetherWith
+                                slideOutVertically(
+                                    targetOffsetY = { it },
+                                    animationSpec = tween(1000)
+                                )
+                    } + NavDisplay.predictivePopTransitionSpec {
+                        // Slide old content down, revealing the new content in place underneath
+                        EnterTransition.None togetherWith
+                                slideOutVertically(
+                                    targetOffsetY = { it },
+                                    animationSpec = tween(1000)
+                                )
                     }
+                ) {
+                    DashboardScreen(
+                        innerPadding = innerPadding,
+                        onNavigateLogin = {
+                            backStack.add(LoginRoute)
+                        }
+                    )
+                }
+            },
+            transitionSpec = {
+                // Slide in from right when navigating forward
+                slideInHorizontally(
+                    initialOffsetX = { it },
+                    animationSpec = tween(1000)
+                ) togetherWith slideOutHorizontally(
+                    targetOffsetX = { -it },
+                    animationSpec = tween(1000)
+                )
+            },
+            popTransitionSpec = {
+                // Slide in from left when navigating back
+                slideInHorizontally(
+                    initialOffsetX = { -it },
+                    animationSpec = tween(1000)
+                ) togetherWith slideOutHorizontally(
+                    targetOffsetX = { it },
+                    animationSpec = tween(1000)
+                )
+            },
+            predictivePopTransitionSpec = {
+                // Slide in from left when navigating back
+                slideInHorizontally(
+                    initialOffsetX = { -it },
+                    animationSpec = tween(1000)
+                ) togetherWith slideOutHorizontally(
+                    targetOffsetX = { it },
+                    animationSpec = tween(1000)
                 )
             }
-        }
-    }
-}
-
-fun AppBackHandler(navController: NavHostController) {
-    if (navController.previousBackStackEntry != null) {
-        navController.popBackStack()
-    } else {
-        navController.popBackStack()
+        )
     }
 }

@@ -216,7 +216,6 @@ val provideRepositoryModule = module {
     singleOf(::LoginRepositoryImpl).bind<LoginRepository>()
     singleOf(::LogoutRepositoryImpl).bind<LogoutRepository>()
     singleOf(::RefreshTokenRepositoryImpl).bind<RefreshTokenRepository>()
-    singleOf(::LogoutRepositoryImpl).bind<LogoutRepository>()
 
     singleOf(::AuthenticationRoomRepositoryImpl).bind<AuthenticationRoomRepository>()
     singleOf(::UserRoomRepositoryImpl).bind<UserRoomRepository>()
@@ -226,7 +225,6 @@ val provideUseCaseModule = module {
     singleOf(::LoginUseCase)
     singleOf(::LogoutUseCase)
     singleOf(::RefreshTokenUseCase)
-    singleOf(::LogoutUseCase)
 
     singleOf(::AuthenticationRoomUseCase)
     singleOf(::UserRoomUseCase)
@@ -236,7 +234,6 @@ val provideViewModelModule = module {
     viewModelOf(::LoginViewModel)
     viewModelOf(::LogoutViewModel)
     viewModelOf(::RefreshTokenViewModel)
-    viewModelOf(::LogoutViewModel)
     viewModelOf(::SplashViewModel)
 
     viewModelOf(::AuthenticationRoomViewModel)

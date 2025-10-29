@@ -61,18 +61,16 @@ private fun Modifier.drawBorder(
     borderWidth: Float,
     halfStroke: Float,
     sides: List<BorderSide>
-): Modifier = this.then(
-    drawBehind {
-        sides.forEach { side ->
-            when (side) {
-                BorderSide.LEFT -> drawLeftBorder(color, borderWidth, halfStroke)
-                BorderSide.TOP -> drawTopBorder(color, borderWidth, halfStroke)
-                BorderSide.RIGHT -> drawRightBorder(color, borderWidth, halfStroke)
-                BorderSide.BOTTOM -> drawBottomBorder(color, borderWidth, halfStroke)
-            }
+): Modifier = this.drawBehind {
+    sides.forEach { side ->
+        when (side) {
+            BorderSide.LEFT -> drawLeftBorder(color, borderWidth, halfStroke)
+            BorderSide.TOP -> drawTopBorder(color, borderWidth, halfStroke)
+            BorderSide.RIGHT -> drawRightBorder(color, borderWidth, halfStroke)
+            BorderSide.BOTTOM -> drawBottomBorder(color, borderWidth, halfStroke)
         }
     }
-)
+}
 
 private fun DrawScope.drawLeftBorder(color: Color, borderWidth: Float, halfStroke: Float) {
     drawLine(

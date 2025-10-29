@@ -77,8 +77,6 @@ fun SplashScreen(
         onDispose {
             // Reset the relevant states
             splashViewModel.resetStates()
-
-            // resultsUIState = ResultUIState()
         }
     }
 
@@ -90,7 +88,7 @@ fun SplashScreen(
             title = "No Network Connection",
             message = "Please check you internet connection.\nPlease try again.",
             onDismiss = {
-                // resultsUIState = ResultUIState()
+                splashViewModel.resetStates()
             },
         )
         return
@@ -127,7 +125,6 @@ fun SplashScreen(
             },
             onUpdateNotAvailable = {
                 // Proceed app
-                // authenticationRoomViewModel.getIsLogged()
                 splashViewModel.onEvent(SplashEvent.GetIsLogged)
             },
             onCancelled = {
@@ -136,7 +133,6 @@ fun SplashScreen(
                     exitApp()
                 } else {
                     // Proceed app
-                    // authenticationRoomViewModel.getIsLogged()
                     splashViewModel.onEvent(SplashEvent.GetIsLogged)
                 }
             },
@@ -146,7 +142,6 @@ fun SplashScreen(
                     exitApp()
                 } else {
                     // Proceed app
-                    // authenticationRoomViewModel.getIsLogged()
                     splashViewModel.onEvent(SplashEvent.GetIsLogged)
                 }
             },

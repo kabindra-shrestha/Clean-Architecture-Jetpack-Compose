@@ -17,8 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
@@ -26,7 +26,6 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.kabindra.inappupdate.ui.component.ButtonNormal
 import com.kabindra.inappupdate.ui.component.ImageHandlerLottie
 import com.kabindra.inappupdate.ui.component.TextMedium
-import com.kabindra.inappupdate.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 
 @Composable
@@ -64,34 +63,34 @@ fun UpdateDownloadDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppTheme.dimens.paddingSmall),
-                shape = RoundedCornerShape(16.dp),
+                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(AppTheme.dimens.paddingSmall)
+                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp),
+                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
+                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
                     TextMedium(
                         text = message,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(AppTheme.dimens.paddingSmall)
+                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -99,7 +98,7 @@ fun UpdateDownloadDialog(
                             ButtonNormal(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.dp),
+                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
                                 text = "Install",
                                 onClick = {
                                     openDialog.value = false
@@ -139,41 +138,41 @@ fun UpdateAvailableDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppTheme.dimens.paddingSmall),
-                shape = RoundedCornerShape(16.dp),
+                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(AppTheme.dimens.paddingSmall)
+                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp),
+                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
+                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
                     TextMedium(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center,
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._4sdp)))
                     TextMedium(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(AppTheme.dimens.paddingSmall)
+                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -181,7 +180,7 @@ fun UpdateAvailableDialog(
                             ButtonNormal(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.dp),
+                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
                                 text = "Update",
                                 onClick = {
                                     openDialog.value = false
@@ -193,7 +192,7 @@ fun UpdateAvailableDialog(
                                 ButtonNormal(
                                     modifier = Modifier
                                         .align(Alignment.CenterVertically)
-                                        .width(100.dp),
+                                        .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
                                     text = "Later",
                                     onClick = {
                                         openDialog.value = false

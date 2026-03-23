@@ -22,8 +22,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+
 import coil3.compose.AsyncImage
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.compose.LottieAnimation
@@ -33,8 +34,8 @@ import com.kabindra.clean.architecture.presentation.ui.theme.transparent
 @Composable
 fun ImageHandlerURL(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: String = "",
     contentDescription: String = "",
     contentScale: ContentScale = ContentScale.Fit,
@@ -79,8 +80,8 @@ fun ImageHandlerURL(
 @Composable
 fun ImageHandlerRes(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: Int = R.drawable.splash_icon,
     contentDescription: String = "",
     circular: Boolean = false,
@@ -105,8 +106,8 @@ fun ImageHandlerRes(
 @Composable
 fun ImageHandlerVector(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: ImageVector?,
     contentDescription: String = "",
     tint: Color? = null,
@@ -140,8 +141,8 @@ fun ImageHandlerVector(
 @Composable
 fun ImageHandlerLottie(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: LottieComposition?,
     contentDescription: String = "",
     circular: Boolean = false,

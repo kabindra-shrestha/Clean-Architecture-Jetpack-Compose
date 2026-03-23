@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.kabindra.clean.architecture.R
@@ -17,8 +18,8 @@ import com.kabindra.clean.architecture.R
 @Composable
 fun ShowEmpty(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp)
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),

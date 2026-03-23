@@ -30,11 +30,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
+
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldDefault
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldError
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldLabelDefault
@@ -63,7 +64,7 @@ fun InputField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -75,7 +76,7 @@ fun InputField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = "",
@@ -89,7 +90,7 @@ fun InputField(
         value = value,
         onValueChange = onValueChange,
         label = { TextComponent(text = label) },
-        isError = isError && errorText.isNotEmpty(),
+        isError = isError,
         modifier = modifier,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = inputFieldDefault,
@@ -118,8 +119,8 @@ fun InputField(
         visualTransformation = VisualTransformation.None,
         enabled = isEnabled,
         supportingText = {
-            if (!isError && errorText.isNotEmpty()) {
-                TextError(text = errorText, maxLines = 2)
+            if (isError && errorText.isNotEmpty()) {
+                TextComponent(text = errorText, maxLines = 2)
             }
         }
     )
@@ -144,7 +145,7 @@ fun PasswordField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -155,7 +156,7 @@ fun PasswordField(
     val trailingIcons = @Composable {
         ImageHandlerVector(
             modifier = Modifier
-                .size(20.dp)
+                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                 .aspectRatio(1f / 1f),
             image = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
             contentDescription = "",
@@ -167,8 +168,8 @@ fun PasswordField(
         value = value,
         onValueChange = onValueChange,
         label = { TextComponent(text = label) },
-        isError = !isError,
-        modifier = Modifier.fillMaxWidth(),
+        isError = isError,
+        modifier = modifier.fillMaxWidth(),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = inputFieldDefault,
             focusedTextColor = inputFieldTextDefault,
@@ -195,8 +196,8 @@ fun PasswordField(
         singleLine = true,
         visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         supportingText = {
-            if (!isError && errorText.isNotEmpty()) {
-                TextError(text = errorText, maxLines = 2)
+            if (isError && errorText.isNotEmpty()) {
+                TextComponent(text = errorText, maxLines = 2)
             }
         }
     )
@@ -223,7 +224,7 @@ fun <T> DropdownField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -234,7 +235,7 @@ fun <T> DropdownField(
     val trailingIcons: (@Composable () -> Unit) = {
         ImageHandlerVector(
             modifier = Modifier
-                .size(20.dp)
+                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                 .aspectRatio(1f / 1f),
             image = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
             contentDescription = "",
@@ -268,8 +269,8 @@ fun <T> DropdownField(
             trailingIcon = trailingIcons,
             enabled = isEnabled,
             supportingText = {
-                if (!isError && errorText.isNotEmpty()) {
-                    TextError(text = errorText, maxLines = 2)
+                if (isError && errorText.isNotEmpty()) {
+                    TextComponent(text = errorText, maxLines = 2)
                 }
             },
             // Remove the internal clickable behavior since it's handled by Box

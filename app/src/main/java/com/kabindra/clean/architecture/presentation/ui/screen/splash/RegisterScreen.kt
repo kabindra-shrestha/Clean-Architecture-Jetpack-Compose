@@ -14,8 +14,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+
 import com.kabindra.clean.architecture.presentation.ui.component.AppIcon
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
 import com.kabindra.clean.architecture.utils.Connectivity
@@ -53,8 +54,8 @@ fun RegisterScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         AppIcon(
             modifier = Modifier
-                .width(200.dp)
-                .height(200.dp)
+                .width(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
                 .align(Alignment.Center)
         )
 
@@ -62,7 +63,7 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .offset(y = (-75).dp),
+                .offset(y = -dimensionResource(id = com.intuit.sdp.R.dimen._75sdp)),
             text = "Register Screen",
             textAlign = TextAlign.Center
         )

@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
 import coil3.compose.AsyncImage
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.compose.LottieAnimation
@@ -23,8 +23,8 @@ import com.airbnb.lottie.compose.LottieAnimation
 @Composable
 fun ImageHandlerURL(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: String = "",
     contentDescription: String = "",
     contentScale: ContentScale = ContentScale.Fit
@@ -40,8 +40,8 @@ fun ImageHandlerURL(
 @Composable
 fun ImageHandlerVector(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: ImageVector?,
     contentDescription: String = "",
     tint: Color? = null,
@@ -75,8 +75,8 @@ fun ImageHandlerVector(
 @Composable
 fun ImageHandlerLottie(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp))
+        .height(dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)),
     image: LottieComposition?,
     contentDescription: String = ""
 ) {

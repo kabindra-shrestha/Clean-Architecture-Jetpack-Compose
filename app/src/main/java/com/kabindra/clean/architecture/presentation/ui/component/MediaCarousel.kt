@@ -26,10 +26,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
-import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabPosition
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.material3.TabIndicatorScope
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,8 +40,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+
 import androidx.compose.ui.util.lerp
 import com.kabindra.clean.architecture.presentation.ui.theme.carouselSelected
 import com.kabindra.clean.architecture.presentation.ui.theme.carouselUnselected
@@ -59,7 +61,7 @@ fun PagerIndicator(modifier: Modifier = Modifier, pageCount: Int, currentPageInd
         modifier = modifier
             .wrapContentHeight()
             .fillMaxWidth()
-            .padding(bottom = 16.dp),
+            .padding(bottom = dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
         horizontalArrangement = Arrangement.Center
     ) {
         repeat(pageCount) { iteration ->
@@ -67,10 +69,13 @@ fun PagerIndicator(modifier: Modifier = Modifier, pageCount: Int, currentPageInd
                 if (currentPageIndex == iteration) carouselSelected else carouselUnselected
             Box(
                 modifier = Modifier
-                    .width(16.dp)
-                    .height(4.dp)
-                    .padding(start = 2.dp, end = 2.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp))
+                    .height(dimensionResource(id = com.intuit.sdp.R.dimen._4sdp))
+                    .padding(
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp),
+                        end = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)
+                    )
+                    .clip(RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
                     .background(color)
             )
         }
@@ -78,16 +83,15 @@ fun PagerIndicator(modifier: Modifier = Modifier, pageCount: Int, currentPageInd
 }
 
 @Composable
-fun TabIndicator(
-    tabPositions: List<TabPosition>,
+fun TabIndicatorScope.TabIndicator(
     selectedIndex: Int
 ) {
     Box(
         modifier = Modifier
-            .tabIndicatorOffset(tabPositions[selectedIndex])
-            .height(4.dp)
-            .padding(horizontal = 28.dp)
-            .clip(RoundedCornerShape(8.dp))
+            .tabIndicatorOffset(selectedIndex)
+            .height(dimensionResource(id = com.intuit.sdp.R.dimen._4sdp))
+            .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._28sdp))
+            .clip(RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
             .background(tabSelected)
     )
 }
@@ -97,7 +101,7 @@ fun <T> HorizontalPagers(
     modifier: Modifier = Modifier.fillMaxWidth(),
     aspectRatio: Float = 16f / 9f,
     padding: Dp = 0.dp,
-    contentPadding: PaddingValues = PaddingValues(30.dp),
+    contentPadding: PaddingValues = PaddingValues(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)),
     pageSpacing: Dp = 0.dp,
     useGraphicsLayer: Boolean = false,
     isAutoScroll: Boolean = false,
@@ -137,7 +141,7 @@ fun <T> HorizontalPagers(
             Card(
                 modifier = modifier
                     .aspectRatio(aspectRatio)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
                     .clickable(
                         interactionSource = pageInteractionSource,
                         indication = ripple(bounded = true),
@@ -196,13 +200,13 @@ fun <T> HorizontalPagers(
 fun <T> HorizontalPagersWithTabs(
     modifier: Modifier = Modifier.fillMaxWidth(),
     padding: Dp = 0.dp,
-    contentPadding: PaddingValues = PaddingValues(30.dp),
+    contentPadding: PaddingValues = PaddingValues(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)),
     pageSpacing: Dp = 0.dp,
     useGraphicsLayer: Boolean = false,
     tabs: List<String>,
     tabColor: Color = transparent,
-    tabIndicator: @Composable (tabPositions: List<TabPosition>, selectedIndex: Int) -> Unit = { tabPositions, selectedIndex ->
-        // TabIndicator(tabPositions, selectedIndex)
+    tabIndicator: @Composable TabIndicatorScope.(selectedIndex: Int) -> Unit = { _ ->
+        // TabIndicator(selectedIndex)
     },
     tabsIcon: Boolean = false,
     pageItems: List<T>,
@@ -213,13 +217,13 @@ fun <T> HorizontalPagersWithTabs(
     val scope = rememberCoroutineScope()
 
     Column(modifier = modifier.padding(top = padding)) {
-        ScrollableTabRow(
-            modifier = Modifier.padding(bottom = 10.dp),
+        PrimaryScrollableTabRow(
+            modifier = Modifier.padding(bottom = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp)),
             containerColor = tabColor,
             selectedTabIndex = pagerState.currentPage,
             edgePadding = 0.dp,
-            indicator = { tabPositions ->
-                tabIndicator(tabPositions, pagerState.currentPage)
+            indicator = {
+                tabIndicator(pagerState.currentPage)
             },
             divider = {}
         ) {
@@ -236,8 +240,8 @@ fun <T> HorizontalPagersWithTabs(
                     content = {
                         Row(
                             modifier = Modifier
-                                .height(36.dp)
-                                .clip(RoundedCornerShape(12.dp))
+                                .height(dimensionResource(id = com.intuit.sdp.R.dimen._36sdp))
+                                .clip(RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
                                 .background(
                                     if (isSelected)
                                         tabSelected.copy(alpha = 0.2f)
@@ -245,9 +249,9 @@ fun <T> HorizontalPagersWithTabs(
                                         tabUnselected
                                 )
                                 .border(
-                                    width = 1.dp,
+                                    width = dimensionResource(id = com.intuit.sdp.R.dimen._1sdp),
                                     color = Color.Gray,
-                                    shape = RoundedCornerShape(12.dp)
+                                    shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp))
                                 ),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
@@ -257,20 +261,20 @@ fun <T> HorizontalPagersWithTabs(
                             }
 
                             if (tabsIcon) {
-                                Spacer(modifier = Modifier.width(8.dp))
+                                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
                                 ImageHandlerVector(
-                                    modifier = Modifier.size(24.dp),
+                                    modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp)),
                                     image = Icons.Default.Person
                                 )
-                                Spacer(modifier = Modifier.width(8.dp))
+                                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
                                 if (isSelected) {
                                     tabTitle()
-                                    Spacer(modifier = Modifier.width(12.dp))
+                                    Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
                                 }
                             } else {
-                                Spacer(modifier = Modifier.width(12.dp))
+                                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
                                 tabTitle()
-                                Spacer(modifier = Modifier.width(12.dp))
+                                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
                             }
                         }
                     },

@@ -105,4 +105,7 @@ dependencies {
     ksp(libs.room.compiler)
 
     implementation(libs.lottie.compose)
+
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
 }

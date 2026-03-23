@@ -18,8 +18,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kabindra.clean.architecture.data.request.LoginRefreshUserDetailsDataRequest
 import com.kabindra.clean.architecture.domain.entity.User
@@ -162,8 +163,8 @@ fun SplashScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         AppIcon(
             modifier = Modifier
-                .width(200.dp)
-                .height(200.dp)
+                .width(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
                 .align(Alignment.Center)
         )
 
@@ -171,9 +172,12 @@ fun SplashScreen(
             LoadingIndicator(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp)
+                    .padding(
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp),
+                        end = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)
+                    )
                     .align(Alignment.Center)
-                    .offset(y = 150.dp)
+                    .offset(y = dimensionResource(id = com.intuit.sdp.R.dimen._150sdp))
             )
         }
 
@@ -181,7 +185,7 @@ fun SplashScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .offset(y = (-75).dp),
+                .offset(y = -dimensionResource(id = com.intuit.sdp.R.dimen._75sdp)),
             text = "Version: ${getPlatform().appVersion}",
             textAlign = TextAlign.Center
         )
@@ -194,7 +198,8 @@ fun SplashScreen(
     if (splashState.isLogged == true) {
         splashViewModel.onEvent(SplashEvent.GetUser)
     } else {
-        onNavigateLogin()
+        // onNavigateLogin()
+        onNavigateDashboard()
     }
 
     LaunchedEffect(splashState.user) {

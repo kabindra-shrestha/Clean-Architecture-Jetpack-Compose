@@ -12,6 +12,7 @@ lifecycle-runtime-ktx = "2.10.0"
 activity-compose = "1.13.0"
 compose-bom = "2026.03.00"
 ksp = "2.3.2"
+material3 = "1.5.0-alpha15"
 materialIconsExtended = "1.7.8"
 androidx-navigation3 = "1.0.1"
 androidx-startup-runtime = "1.2.0"
@@ -27,6 +28,8 @@ google-services = "4.4.4"
 firebase = "34.11.0"
 firebase-crashlytics = "3.0.6"
 lottieCompose = "6.7.1"
+sdpAndroid = "1.1.1"
+sspAndroid = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -42,7 +45,7 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidx-navigation3" }
@@ -70,6 +73,8 @@ coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.re
 coil-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
+ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }

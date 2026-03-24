@@ -15,8 +15,8 @@ fun GlobalDialogComponent(
             /*Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
-                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(2.sdp),
+                shape = RoundedCornerShape(16.sdp),
             ) {
                 content()
             }*/

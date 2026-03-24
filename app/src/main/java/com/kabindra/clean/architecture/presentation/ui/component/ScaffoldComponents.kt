@@ -14,13 +14,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.kabindra.clean.architecture.presentation.ui.screen.navigation.LoginRoute
 import com.kabindra.clean.architecture.utils.enums.MenuType
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun Lifecycle.observeAsSate(): State<Lifecycle.Event> {
@@ -132,8 +131,8 @@ fun BottomNavigationBarComponent(
                         label.icon?.let {
                             ImageHandlerVector(
                                 modifier = Modifier
-                                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._32sdp))
-                                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._1sdp)),
+                                    .size(32.sdp)
+                                    .padding(1.sdp),
                                 image = it,
                                 contentDescription = label.title
                             )

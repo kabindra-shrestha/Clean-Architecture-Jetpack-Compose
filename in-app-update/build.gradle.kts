@@ -58,6 +58,5 @@ dependencies {
     implementation(libs.bundles.coil)
     implementation(libs.lottie.compose)
 
-    implementation(libs.sdp.android)
-    implementation(libs.ssp.android)
+    implementation(libs.sdp.ssp)
 }

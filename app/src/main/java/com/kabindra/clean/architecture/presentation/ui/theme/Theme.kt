@@ -117,15 +117,9 @@ fun JetpackComposeCleanArchitectureTheme(
         else -> lightScheme
     }
 
-    /*  MaterialTheme(
-            colorScheme = colorScheme,
-            typography = AppTypography,
-            content = content
-        )*/
-
     MaterialTheme(
-        typography = manRopeTypography(),
         colorScheme = colorScheme,
+        typography = AppTypography(),
         content = content
     )
 }

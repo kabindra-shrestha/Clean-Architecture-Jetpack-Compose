@@ -20,8 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 
 enum class ExpressiveCarouselVariant {
@@ -36,11 +36,11 @@ fun <T> ExpressiveCarouselComponent(
     modifier: Modifier = Modifier,
     items: List<T>,
     variant: ExpressiveCarouselVariant = ExpressiveCarouselVariant.MULTI_BROWSE,
-    preferredItemWidth: Dp = dimensionResource(id = com.intuit.sdp.R.dimen._186sdp),
-    itemWidth: Dp = dimensionResource(id = com.intuit.sdp.R.dimen._186sdp),
+    preferredItemWidth: Dp = 186.sdp,
+    itemWidth: Dp = 186.sdp,
     maxItemWidth: Dp = Dp.Unspecified,
-    itemSpacing: Dp = dimensionResource(id = com.intuit.sdp.R.dimen._8sdp),
-    contentPadding: PaddingValues = PaddingValues(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+    itemSpacing: Dp = 8.sdp,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 16.sdp),
     userScrollEnabled: Boolean = true,
     itemContent: @Composable CarouselItemScope.(item: T, index: Int) -> Unit,
 ) {
@@ -106,7 +106,7 @@ fun ExpressiveTextCarousel(
         CardComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .height(200.sdp)
                 .maskClip(MaterialTheme.shapes.extraLarge)
                 .clickable { onItemClick(item) },
             variant = CardVariant.FILLED,
@@ -114,8 +114,8 @@ fun ExpressiveTextCarousel(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(8.sdp),
             ) {
                 TextComponent(
                     text = item,
@@ -149,7 +149,7 @@ fun ExpressiveImageCarousel(
         CardComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .height(200.sdp)
                 .maskClip(MaterialTheme.shapes.extraLarge)
                 .clickable { onImageClick(imageUrl) },
             variant = CardVariant.ELEVATED,
@@ -164,7 +164,7 @@ fun ExpressiveImageCarousel(
                 TextComponent(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
-                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        .padding(12.sdp),
                     text = "Image #${index + 1}",
                     type = TextType.Label,
                     size = TextSize.Small,

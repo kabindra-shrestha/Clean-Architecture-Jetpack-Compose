@@ -39,7 +39,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -79,6 +78,7 @@ import com.kabindra.clean.architecture.presentation.ui.component.TopAppBarCompon
 import com.kabindra.clean.architecture.utils.Connectivity
 import com.kabindra.clean.architecture.utils.error.GlobalErrorDialog
 import kotlinx.coroutines.delay
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 private data class DashboardFabAction(
     val title: String,
@@ -187,8 +187,8 @@ fun DashboardScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                .padding(16.sdp),
+            verticalArrangement = Arrangement.spacedBy(12.sdp),
         ) {
             TextComponent(
                 text = "This sheet is rendered with `ModalBottomSheetComponent`.",
@@ -208,27 +208,27 @@ fun DashboardScreen(
             .padding(innerPadding)
             .verticalScroll(rememberScrollState())
             .padding(
-                horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._16sdp),
-                vertical = dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)
+                horizontal = 16.sdp,
+                vertical = 12.sdp
             ),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+        verticalArrangement = Arrangement.spacedBy(16.sdp),
     ) {
         CardComponent(modifier = Modifier.fillMaxWidth()) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(16.sdp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                horizontalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 AppIcon(
                     modifier = Modifier
-                        .width(dimensionResource(id = com.intuit.sdp.R.dimen._72sdp))
-                        .height(dimensionResource(id = com.intuit.sdp.R.dimen._72sdp)),
+                        .width(72.sdp)
+                        .height(72.sdp),
                 )
                 Column(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._4sdp)),
+                    verticalArrangement = Arrangement.spacedBy(4.sdp),
                 ) {
                     TextComponent(
                         text = "Reusable Components Dashboard",
@@ -250,8 +250,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._10sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(10.sdp),
             ) {
                 TextComponent(
                     text = "Text + App Components",
@@ -261,15 +261,15 @@ fun DashboardScreen(
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(12.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     AppIconFilled(
                         modifier = Modifier
-                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._120sdp))
-                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._46sdp))
+                            .width(120.sdp)
+                            .height(46.sdp)
                     )
-                    AppBrandIcon(modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._36sdp)))
+                    AppBrandIcon(modifier = Modifier.size(36.sdp))
                 }
                 TextComponent(
                     text = "TextComponent (Display/Headline/Title/Body/Label)",
@@ -324,8 +324,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(8.sdp),
             ) {
                 TextComponent(
                     text = "Scaffold Components",
@@ -348,8 +348,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Typography + Buttons",
@@ -364,7 +364,7 @@ fun DashboardScreen(
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(8.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     ButtonIconAndText(
@@ -382,7 +382,7 @@ fun DashboardScreen(
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(8.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     ButtonIcon(
@@ -401,7 +401,7 @@ fun DashboardScreen(
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(8.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     ButtonBack(useExpressiveShapes = useExpressive, onClick = {})
@@ -419,8 +419,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Carousel Components",
@@ -437,7 +437,7 @@ fun DashboardScreen(
                 ExpressiveTextCarousel(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(dimensionResource(id = com.intuit.sdp.R.dimen._230sdp)),
+                        .height(230.sdp),
                     items = carouselItems,
                     variant = if (useExpressive) {
                         ExpressiveCarouselVariant.MULTI_BROWSE
@@ -454,7 +454,7 @@ fun DashboardScreen(
                 ExpressiveImageCarousel(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(dimensionResource(id = com.intuit.sdp.R.dimen._230sdp)),
+                        .height(230.sdp),
                     imageUrls = carouselImageUrls,
                     variant = if (useExpressive) {
                         ExpressiveCarouselVariant.CENTERED_HERO
@@ -469,8 +469,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Input Components",
@@ -536,8 +536,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Card Components",
@@ -551,7 +551,7 @@ fun DashboardScreen(
                     useExpressive = useExpressive,
                 ) {
                     TextComponent(
-                        modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        modifier = Modifier.padding(12.sdp),
                         text = "Filled Card (Material 3 default variant).",
                         maxLines = 2,
                     )
@@ -562,7 +562,7 @@ fun DashboardScreen(
                     useExpressive = useExpressive,
                 ) {
                     TextComponent(
-                        modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        modifier = Modifier.padding(12.sdp),
                         text = "Elevated Card (default elevation and visible depth).",
                         maxLines = 2,
                     )
@@ -573,7 +573,7 @@ fun DashboardScreen(
                     useExpressive = useExpressive,
                 ) {
                     TextComponent(
-                        modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        modifier = Modifier.padding(12.sdp),
                         text = "Outlined Card (Material 3 default border style).",
                         maxLines = 2,
                     )
@@ -584,7 +584,7 @@ fun DashboardScreen(
                     useExpressive = useExpressive,
                 ) {
                     TextComponent(
-                        modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        modifier = Modifier.padding(12.sdp),
                         text = "Reusable Elevated Card for content sections.",
                         maxLines = 2,
                     )
@@ -595,7 +595,7 @@ fun DashboardScreen(
                     useExpressive = useExpressive,
                 ) {
                     TextComponent(
-                        modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                        modifier = Modifier.padding(12.sdp),
                         text = "Reusable Filled Card for compact layouts.",
                         maxLines = 2,
                     )
@@ -607,8 +607,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Progress Components",
@@ -629,17 +629,17 @@ fun DashboardScreen(
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(16.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     LoadingIndicator(
-                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._56sdp)),
+                        modifier = Modifier.size(56.sdp),
                         isCircular = true,
                         progress = progress,
                         useExpressive = useExpressive,
                     )
                     LoadingIndicator(
-                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._56sdp)),
+                        modifier = Modifier.size(56.sdp),
                         isCircular = true,
                         useExpressive = useExpressive,
                     )
@@ -657,8 +657,8 @@ fun DashboardScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                    .padding(16.sdp),
+                verticalArrangement = Arrangement.spacedBy(12.sdp),
             ) {
                 TextComponent(
                     text = "Lazy + Pager Components",
@@ -669,10 +669,10 @@ fun DashboardScreen(
                 HorizontalPagersWithTabs(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(dimensionResource(id = com.intuit.sdp.R.dimen._180sdp)),
+                        .height(180.sdp),
                     tabs = pagerTabs,
                     pageItems = pagerItems,
-                    contentPadding = PaddingValues(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)),
+                    contentPadding = PaddingValues(horizontal = 20.sdp),
                     tabIndicator = { selectedIndex -> TabIndicator(selectedIndex) },
                     pageContent = { _, _, item ->
                         CardComponent(
@@ -681,7 +681,7 @@ fun DashboardScreen(
                             useExpressive = useExpressive,
                         ) {
                             TextComponent(
-                                modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp)),
+                                modifier = Modifier.padding(14.sdp),
                                 text = item,
                                 maxLines = 3,
                             )
@@ -691,7 +691,7 @@ fun DashboardScreen(
                 BaseLazy(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(dimensionResource(id = com.intuit.sdp.R.dimen._220sdp)),
+                        .height(220.sdp),
                     items = lazyItems,
                     listType = LazyListType.LIST,
                     scrollDirection = LazyScrollDirection.VERTICAL,
@@ -707,7 +707,7 @@ fun DashboardScreen(
                             useExpressive = useExpressive,
                         ) {
                             TextComponent(
-                                modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)),
+                                modifier = Modifier.padding(12.sdp),
                                 text = "${index + 1}. $item",
                                 maxLines = 1,
                             )
@@ -728,13 +728,13 @@ fun DashboardScreen(
         CardComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(id = com.intuit.sdp.R.dimen._240sdp)),
+                .height(240.sdp),
             variant = CardVariant.FILLED,
             useExpressive = useExpressive,
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 TextComponent(
-                    modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp)),
+                    modifier = Modifier.padding(14.sdp),
                     text = "Expandable FAB Component Demo",
                     type = TextType.Title,
                     size = TextSize.Medium,

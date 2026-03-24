@@ -14,13 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-
 import com.kabindra.clean.architecture.presentation.ui.component.AppIcon
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
 import com.kabindra.clean.architecture.utils.Connectivity
 import com.kabindra.clean.architecture.utils.error.GlobalErrorDialog
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun LoginVerifyOTPScreen(
@@ -54,8 +53,8 @@ fun LoginVerifyOTPScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         AppIcon(
             modifier = Modifier
-                .width(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
-                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .width(200.sdp)
+                .height(200.sdp)
                 .align(Alignment.Center)
         )
 
@@ -63,7 +62,7 @@ fun LoginVerifyOTPScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .offset(y = -dimensionResource(id = com.intuit.sdp.R.dimen._75sdp)),
+                .offset(y = -75.sdp),
             text = "Login Verify OTP Screen",
             textAlign = TextAlign.Center
         )

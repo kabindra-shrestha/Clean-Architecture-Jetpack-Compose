@@ -34,8 +34,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -49,10 +49,10 @@ fun ButtonComponent(
     content: @Composable () -> Unit
 ) {
     val defaultButtonShape = RoundedCornerShape(
-        topStart = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
-        topEnd = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
-        bottomEnd = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
-        bottomStart = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
+        topStart = 10.sdp,
+        topEnd = 10.sdp,
+        bottomEnd = 10.sdp,
+        bottomStart = 10.sdp,
     )
     val expressiveButtonShapes = ButtonDefaults.shapes()
 
@@ -145,7 +145,7 @@ fun ButtonIcon(
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                .size(20.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = "Icon Button"
@@ -175,14 +175,14 @@ fun ButtonIconAndText(
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                .size(20.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)))
+        Spacer(modifier = Modifier.width(2.sdp))
         TextComponent(
-            modifier = Modifier.padding(start = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+            modifier = Modifier.padding(start = 2.sdp),
             text = text
         )
     }
@@ -199,7 +199,7 @@ fun ButtonTopIconAndText(
 ) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
+            .clip(RoundedCornerShape(12.sdp))
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(bounded = true),
@@ -214,11 +214,11 @@ fun ButtonTopIconAndText(
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)))
+        Spacer(modifier = Modifier.height(2.sdp))
         TextComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+                .padding(2.sdp),
             text = text,
             textAlign = TextAlign.Center,
             maxLines = 2
@@ -248,14 +248,14 @@ fun ButtonTextAndIcon(
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                .size(20.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)))
+        Spacer(modifier = Modifier.width(2.sdp))
         TextComponent(
-            modifier = Modifier.padding(start = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+            modifier = Modifier.padding(start = 2.sdp),
             text = text
         )
 
@@ -266,14 +266,14 @@ fun ButtonTextAndIcon(
 @Composable
 fun ButtonBack(
     modifier: Modifier = Modifier
-        .width(dimensionResource(id = com.intuit.sdp.R.dimen._50sdp))
-        .height(dimensionResource(id = com.intuit.sdp.R.dimen._50sdp)),
+        .width(50.sdp)
+        .height(50.sdp),
     useExpressiveShapes: Boolean = true,
     onClick: () -> Unit = {}
 ) {
     if (useExpressiveShapes) {
         IconButton(
-            modifier = modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._10sdp)),
+            modifier = modifier.padding(10.sdp),
             shapes = IconButtonDefaults.shapes(),
             onClick = { onClick() }
         ) {
@@ -284,7 +284,7 @@ fun ButtonBack(
         }
     } else {
         IconButton(
-            modifier = modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._10sdp)),
+            modifier = modifier.padding(10.sdp),
             onClick = { onClick() }) {
             ImageHandlerVector(
                 image = Icons.Default.ArrowCircleLeft,
@@ -304,7 +304,7 @@ fun ButtonClose(
     if (useExpressiveShapes) {
         FilledTonalIconButton(
             modifier = modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp)),
+                .size(24.sdp),
             shapes = IconButtonDefaults.shapes(),
             onClick = { onClick() },
         ) {
@@ -316,7 +316,7 @@ fun ButtonClose(
     } else {
         FilledTonalIconButton(
             modifier = modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp)),
+                .size(24.sdp),
             onClick = { onClick() },
             shape = IconButtonDefaults.filledShape
         ) {
@@ -346,7 +346,7 @@ fun ButtonAction(
         ) {
             ImageHandlerVector(
                 modifier = modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp))
+                    .size(24.sdp)
                     .aspectRatio(1f / 1f),
                 image = iconVector,
                 tint = tint,
@@ -357,7 +357,7 @@ fun ButtonAction(
         IconButton(onClick = onClick) {
             ImageHandlerVector(
                 modifier = modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp))
+                    .size(24.sdp)
                     .aspectRatio(1f / 1f),
                 image = iconVector,
                 tint = tint,

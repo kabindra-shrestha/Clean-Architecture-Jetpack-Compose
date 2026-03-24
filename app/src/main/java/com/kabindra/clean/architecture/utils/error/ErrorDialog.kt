@@ -16,7 +16,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -27,6 +26,7 @@ import com.kabindra.clean.architecture.presentation.ui.component.ImageHandlerLot
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
 import com.kabindra.clean.architecture.utils.constants.StatusCode.Companion.STATUS_CODE_NOT_HANDLED
 import com.kabindra.clean.architecture.utils.handler.HandleResponseStatusCode
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun GlobalErrorDialog(
@@ -51,42 +51,42 @@ fun GlobalErrorDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
-                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(2.sdp),
+                shape = RoundedCornerShape(16.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                        .padding(2.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
-                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                            .width(100.sdp)
+                            .height(100.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
+                    Spacer(modifier = Modifier.height(8.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
+                    Spacer(modifier = Modifier.height(12.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 3
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                                .padding(2.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -94,7 +94,7 @@ fun GlobalErrorDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                                    .width(100.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false
@@ -138,41 +138,41 @@ fun ServerMaintenanceDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
-                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(2.sdp),
+                shape = RoundedCornerShape(16.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                        .padding(2.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
-                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                            .width(100.sdp)
+                            .height(100.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
+                    Spacer(modifier = Modifier.height(8.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)))
+                    Spacer(modifier = Modifier.height(12.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                                .padding(2.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -180,7 +180,7 @@ fun ServerMaintenanceDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                                    .width(100.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false
@@ -220,41 +220,41 @@ fun VersionCheckDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
-                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(2.sdp),
+                shape = RoundedCornerShape(16.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                        .padding(2.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
-                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                            .width(100.sdp)
+                            .height(100.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
+                    Spacer(modifier = Modifier.height(8.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center,
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._4sdp)))
+                    Spacer(modifier = Modifier.height(4.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                                .padding(2.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -262,7 +262,7 @@ fun VersionCheckDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                                    .width(100.sdp),
                                 text = "Update",
                                 onClick = {
                                     openDialog.value = false
@@ -274,7 +274,7 @@ fun VersionCheckDialog(
                                 ButtonText(
                                     modifier = Modifier
                                         .align(Alignment.CenterVertically)
-                                        .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                                        .width(100.sdp),
                                     text = "Later",
                                     onClick = {
                                         openDialog.value = false

@@ -19,12 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
-
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun LoadingIndicator(
@@ -71,7 +70,7 @@ fun ExpressiveCircularProgressIndicator(
     color: Color = MaterialTheme.colorScheme.primary,
     trackColor: Color = MaterialTheme.colorScheme.surfaceVariant,
     progress: Float? = null,
-    strokeWidth: Dp = dimensionResource(id = com.intuit.sdp.R.dimen._4sdp),
+    strokeWidth: Dp = 4.sdp,
 ) {
     val strokeWidthPx = with(LocalDensity.current) { strokeWidth.toPx() }
     val stroke = remember(strokeWidthPx) { Stroke(width = strokeWidthPx, cap = StrokeCap.Round) }
@@ -103,7 +102,7 @@ fun ExpressiveLinearProgressIndicator(
     color: Color = MaterialTheme.colorScheme.primary,
     trackColor: Color = MaterialTheme.colorScheme.surfaceVariant,
     progress: Float? = null,
-    strokeWidth: Dp = dimensionResource(id = com.intuit.sdp.R.dimen._4sdp),
+    strokeWidth: Dp = 4.sdp,
 ) {
     val strokeWidthPx = with(LocalDensity.current) { strokeWidth.toPx() }
     val stroke = remember(strokeWidthPx) { Stroke(width = strokeWidthPx, cap = StrokeCap.Round) }
@@ -140,35 +139,35 @@ fun LoadingDialog(
             DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
         ) {
             CardComponent(
-                modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp)),
+                modifier = Modifier.size(200.sdp),
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .size(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp)),
+                        .size(200.sdp),
                 ) {
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
 
                     if (useExpressive) {
                         ExpressiveCircularProgressIndicator(
-                            modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._60sdp)),
+                            modifier = Modifier.size(60.sdp),
                         )
                     } else {
                         CircularProgressIndicator(
-                            modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._60sdp)),
+                            modifier = Modifier.size(60.sdp),
                         )
                     }
 
                     if (message.isNotEmpty()) {
-                        Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                        Spacer(modifier = Modifier.height(16.sdp))
                         TextComponent(
                             text = message,
                             textAlign = TextAlign.Center,
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
                 }
             }
         }

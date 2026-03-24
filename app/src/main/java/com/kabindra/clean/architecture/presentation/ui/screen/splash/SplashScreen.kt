@@ -18,9 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kabindra.clean.architecture.data.request.LoginRefreshUserDetailsDataRequest
 import com.kabindra.clean.architecture.domain.entity.User
@@ -46,6 +44,7 @@ import com.kabindra.inappupdate.exitApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import network.chaintech.sdpcomposemultiplatform.sdp
 import org.koin.compose.viewmodel.koinViewModel
 
 private var firebaseToken = ""
@@ -163,8 +162,8 @@ fun SplashScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         AppIcon(
             modifier = Modifier
-                .width(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
-                .height(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp))
+                .width(200.sdp)
+                .height(200.sdp)
                 .align(Alignment.Center)
         )
 
@@ -173,11 +172,11 @@ fun SplashScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp),
-                        end = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)
+                        start = 20.sdp,
+                        end = 20.sdp
                     )
                     .align(Alignment.Center)
-                    .offset(y = dimensionResource(id = com.intuit.sdp.R.dimen._150sdp))
+                    .offset(y = 150.sdp)
             )
         }
 
@@ -185,7 +184,7 @@ fun SplashScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .offset(y = -dimensionResource(id = com.intuit.sdp.R.dimen._75sdp)),
+                .offset(y = -75.sdp),
             text = "Version: ${getPlatform().appVersion}",
             textAlign = TextAlign.Center
         )

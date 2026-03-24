@@ -17,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -27,6 +26,7 @@ import com.kabindra.clean.architecture.presentation.ui.component.ButtonText
 import com.kabindra.clean.architecture.presentation.ui.component.ImageHandlerLottie
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
 import kotlinx.coroutines.delay
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun GlobalSuccessDialog(
@@ -59,35 +59,35 @@ fun GlobalSuccessDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
-                shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
+                    .padding(2.sdp),
+                shape = RoundedCornerShape(16.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                        .padding(2.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp))
-                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                            .width(100.sdp)
+                            .height(100.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)))
+                    Spacer(modifier = Modifier.height(8.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)))
+                    Spacer(modifier = Modifier.height(16.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                                .padding(2.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -95,7 +95,7 @@ fun GlobalSuccessDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(dimensionResource(id = com.intuit.sdp.R.dimen._100sdp)),
+                                    .width(100.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false

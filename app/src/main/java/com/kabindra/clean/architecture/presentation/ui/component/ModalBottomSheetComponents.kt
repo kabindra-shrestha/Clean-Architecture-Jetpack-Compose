@@ -19,9 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +58,7 @@ fun ModalBottomSheetComponent(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
+                            .padding(horizontal = 2.sdp)
                     ) {
                         TextComponent(
                             text = title,
@@ -69,13 +69,13 @@ fun ModalBottomSheetComponent(
                         )
                         if (useExpressive && icon == Icons.Default.Close) {
                             ButtonClose(
-                                modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._28sdp)),
+                                modifier = Modifier.size(28.sdp),
                                 useExpressiveShapes = true,
                                 onClick = { onDismiss() }
                             )
                         } else {
                             ButtonAction(
-                                modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._28sdp)),
+                                modifier = Modifier.size(28.sdp),
                                 iconVector = icon,
                                 useExpressiveShapes = true,
                                 onClick = { onDismiss() }

@@ -30,18 +30,17 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldDefault
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldError
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldLabelDefault
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldLabelError
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldTextDefault
 import com.kabindra.clean.architecture.presentation.ui.theme.inputFieldTextError
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun InputField(
@@ -64,7 +63,7 @@ fun InputField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                    .size(20.sdp)
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -76,7 +75,7 @@ fun InputField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                    .size(20.sdp)
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = "",
@@ -145,7 +144,7 @@ fun PasswordField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                    .size(20.sdp)
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -156,7 +155,7 @@ fun PasswordField(
     val trailingIcons = @Composable {
         ImageHandlerVector(
             modifier = Modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                .size(20.sdp)
                 .aspectRatio(1f / 1f),
             image = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
             contentDescription = "",
@@ -224,7 +223,7 @@ fun <T> DropdownField(
         {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                    .size(20.sdp)
                     .aspectRatio(1f / 1f),
                 image = it,
                 contentDescription = ""
@@ -235,7 +234,7 @@ fun <T> DropdownField(
     val trailingIcons: (@Composable () -> Unit) = {
         ImageHandlerVector(
             modifier = Modifier
-                .size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
+                .size(20.sdp)
                 .aspectRatio(1f / 1f),
             image = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
             contentDescription = "",

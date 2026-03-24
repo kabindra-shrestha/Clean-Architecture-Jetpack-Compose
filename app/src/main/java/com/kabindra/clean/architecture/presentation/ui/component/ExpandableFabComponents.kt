@@ -43,11 +43,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
-
 import com.kabindra.clean.architecture.presentation.ui.theme.overlay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -120,7 +119,7 @@ private fun <T> ExpressiveExpandableFabComponent(
         }
 
         FloatingActionButtonMenu(
-            modifier = Modifier.padding(bottom = dimensionResource(id = com.intuit.sdp.R.dimen._47sdp)),
+            modifier = Modifier.padding(bottom = 47.sdp),
             expanded = expand,
             button = {
                 ToggleFloatingActionButton(
@@ -152,7 +151,7 @@ private fun <T> ExpressiveExpandableFabComponent(
                     text = { Text(text = itemTitle(item)) },
                     icon = {
                         ImageHandlerVector(
-                            modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._22sdp)),
+                            modifier = Modifier.size(22.sdp),
                             image = itemIcon(item),
                             contentDescription = itemTitle(item)
                         )
@@ -201,8 +200,8 @@ private fun <T> LegacyExpandableFabComponent(
             exit = fadeOut() + slideOutVertically(targetOffsetY = { it }) + shrinkVertically()
         ) {
             Column(
-                modifier = Modifier.padding(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp)),
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._8sdp))
+                modifier = Modifier.padding(8.sdp),
+                verticalArrangement = Arrangement.spacedBy(8.sdp)
             ) {
                 items.forEach { item ->
                     LegacyExpandableFabRow(
@@ -227,7 +226,7 @@ private fun <T> LegacyExpandableFabComponent(
         )
 
         FloatingActionButton(
-            modifier = Modifier.padding(bottom = dimensionResource(id = com.intuit.sdp.R.dimen._47sdp)),
+            modifier = Modifier.padding(bottom = 47.sdp),
             shape = shape,
             onClick = { expand = !expand }
         ) {
@@ -248,13 +247,13 @@ private fun <T> LegacyExpandableFabRow(
     onFabClick: () -> Unit
 ) {
     ExtendedFloatingActionButton(
-        modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._200sdp)),
+        modifier = Modifier.width(200.sdp),
         text = { Text(text = itemTitle(item)) },
         icon = {
             ImageHandlerVector(
                 modifier = Modifier
-                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._32sdp))
-                    .padding(dimensionResource(id = com.intuit.sdp.R.dimen._2sdp)),
+                    .size(32.sdp)
+                    .padding(2.sdp),
                 image = itemIcon(item),
                 contentDescription = itemTitle(item)
             )

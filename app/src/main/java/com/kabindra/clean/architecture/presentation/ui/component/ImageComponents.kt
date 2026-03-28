@@ -33,8 +33,8 @@ import network.chaintech.sdpcomposemultiplatform.sdp
 @Composable
 fun ImageHandlerURL(
     modifier: Modifier = Modifier
-        .width(250.sdp)
-        .height(250.sdp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: String = "",
     contentDescription: String = "",
     contentScale: ContentScale = ContentScale.Fit,
@@ -79,8 +79,8 @@ fun ImageHandlerURL(
 @Composable
 fun ImageHandlerRes(
     modifier: Modifier = Modifier
-        .width(250.sdp)
-        .height(250.sdp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: Int = R.drawable.splash_icon,
     contentDescription: String = "",
     circular: Boolean = false,
@@ -105,8 +105,8 @@ fun ImageHandlerRes(
 @Composable
 fun ImageHandlerVector(
     modifier: Modifier = Modifier
-        .width(250.sdp)
-        .height(250.sdp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: ImageVector?,
     contentDescription: String = "",
     tint: Color? = null,
@@ -140,8 +140,8 @@ fun ImageHandlerVector(
 @Composable
 fun ImageHandlerLottie(
     modifier: Modifier = Modifier
-        .width(250.sdp)
-        .height(250.sdp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: LottieComposition?,
     contentDescription: String = "",
     circular: Boolean = false,

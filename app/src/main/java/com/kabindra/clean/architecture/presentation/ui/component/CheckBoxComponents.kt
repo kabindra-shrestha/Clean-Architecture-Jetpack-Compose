@@ -25,7 +25,7 @@ fun CheckboxCustom(
     label: String = ""
 ) {
     val strokeWidthPx =
-        with(LocalDensity.current) { 2.sdp.toPx() }
+        with(LocalDensity.current) { 1.sdp.toPx() }
     val checkmarkStroke = remember(strokeWidthPx) {
         Stroke(width = strokeWidthPx, cap = StrokeCap.Round, join = StrokeJoin.Round)
     }

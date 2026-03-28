@@ -51,42 +51,42 @@ fun GlobalErrorDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(2.sdp),
-                shape = RoundedCornerShape(16.sdp),
+                    .padding(1.sdp),
+                shape = RoundedCornerShape(10.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(2.sdp)
+                        .padding(1.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.sdp)
-                            .height(100.sdp),
+                            .width(60.sdp)
+                            .height(60.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.sdp))
+                    Spacer(modifier = Modifier.height(5.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(12.sdp))
+                    Spacer(modifier = Modifier.height(7.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 3
                     )
-                    Spacer(modifier = Modifier.height(16.sdp))
+                    Spacer(modifier = Modifier.height(10.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(2.sdp)
+                                .padding(1.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -94,7 +94,7 @@ fun GlobalErrorDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.sdp),
+                                    .width(60.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false
@@ -138,41 +138,41 @@ fun ServerMaintenanceDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(2.sdp),
-                shape = RoundedCornerShape(16.sdp),
+                    .padding(1.sdp),
+                shape = RoundedCornerShape(10.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(2.sdp)
+                        .padding(1.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.sdp)
-                            .height(100.sdp),
+                            .width(60.sdp)
+                            .height(60.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.sdp))
+                    Spacer(modifier = Modifier.height(5.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(12.sdp))
+                    Spacer(modifier = Modifier.height(7.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(16.sdp))
+                    Spacer(modifier = Modifier.height(10.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(2.sdp)
+                                .padding(1.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -180,7 +180,7 @@ fun ServerMaintenanceDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.sdp),
+                                    .width(60.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false
@@ -220,41 +220,41 @@ fun VersionCheckDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(2.sdp),
-                shape = RoundedCornerShape(16.sdp),
+                    .padding(1.sdp),
+                shape = RoundedCornerShape(10.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(2.sdp)
+                        .padding(1.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.sdp)
-                            .height(100.sdp),
+                            .width(60.sdp)
+                            .height(60.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.sdp))
+                    Spacer(modifier = Modifier.height(5.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
                         textAlign = TextAlign.Center,
                     )
-                    Spacer(modifier = Modifier.height(4.sdp))
+                    Spacer(modifier = Modifier.height(2.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(16.sdp))
+                    Spacer(modifier = Modifier.height(10.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(2.sdp)
+                                .padding(1.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -262,7 +262,7 @@ fun VersionCheckDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.sdp),
+                                    .width(60.sdp),
                                 text = "Update",
                                 onClick = {
                                     openDialog.value = false
@@ -274,7 +274,7 @@ fun VersionCheckDialog(
                                 ButtonText(
                                     modifier = Modifier
                                         .align(Alignment.CenterVertically)
-                                        .width(100.sdp),
+                                        .width(60.sdp),
                                     text = "Later",
                                     onClick = {
                                         openDialog.value = false

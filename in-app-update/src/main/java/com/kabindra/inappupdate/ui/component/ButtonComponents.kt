@@ -15,7 +15,7 @@ fun ButtonNormal(
 ) {
     Button(
         modifier = modifier
-            .requiredWidth(120.sdp),
+            .requiredWidth(72.sdp),
         enabled = enabled,
         onClick = onClick
     ) {

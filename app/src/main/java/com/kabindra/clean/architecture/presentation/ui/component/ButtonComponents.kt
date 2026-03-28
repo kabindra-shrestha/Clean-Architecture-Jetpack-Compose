@@ -21,6 +21,7 @@ import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -34,48 +35,70 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.kabindra.clean.architecture.presentation.ui.theme.AppTheme
+import network.chaintech.sdpcomposemultiplatform.sdp
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ButtonComponent(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     isOutlined: Boolean = false,
+    useExpressiveShapes: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
-    val buttonShape = RoundedCornerShape(
-        topStart = 10.dp,
-        topEnd = 10.dp,
-        bottomEnd = 10.dp,
-        bottomStart = 10.dp
+    val defaultButtonShape = RoundedCornerShape(
+        topStart = 6.sdp,
+        topEnd = 6.sdp,
+        bottomEnd = 6.sdp,
+        bottomStart = 6.sdp,
     )
+    val expressiveButtonShapes = ButtonDefaults.shapes()
 
     if (isOutlined) {
-        OutlinedButton(
-            modifier = modifier,
-            // .requiredWidth(AppTheme.dimens.minButtonWidth)
-            // .then(modifier),
-            enabled = enabled,
-            colors = buttonColors,
-            shape = buttonShape,
-            onClick = { onClick() }
-        ) {
-            content()
+        if (useExpressiveShapes) {
+            OutlinedButton(
+                modifier = modifier,
+                enabled = enabled,
+                colors = buttonColors,
+                shapes = expressiveButtonShapes,
+                onClick = { onClick() }
+            ) {
+                content()
+            }
+        } else {
+            OutlinedButton(
+                modifier = modifier,
+                enabled = enabled,
+                colors = buttonColors,
+                shape = defaultButtonShape,
+                onClick = { onClick() }
+            ) {
+                content()
+            }
         }
     } else {
-        Button(
-            modifier = modifier,
-            // .requiredWidth(AppTheme.dimens.minButtonWidth)
-            // .then(modifier),
-            enabled = enabled,
-            colors = buttonColors,
-            shape = buttonShape,
-            onClick = { onClick() }
-        ) {
-            content()
+        if (useExpressiveShapes) {
+            Button(
+                modifier = modifier,
+                enabled = enabled,
+                colors = buttonColors,
+                shapes = expressiveButtonShapes,
+                onClick = { onClick() }
+            ) {
+                content()
+            }
+        } else {
+            Button(
+                modifier = modifier,
+                enabled = enabled,
+                colors = buttonColors,
+                shape = defaultButtonShape,
+                onClick = { onClick() }
+            ) {
+                content()
+            }
         }
     }
 }
@@ -86,6 +109,7 @@ fun ButtonText(
     text: String,
     enabled: Boolean = true,
     isOutlined: Boolean = false,
+    useExpressiveShapes: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit
 ) {
@@ -93,6 +117,7 @@ fun ButtonText(
         modifier = modifier,
         enabled = enabled,
         isOutlined = isOutlined,
+        useExpressiveShapes = useExpressiveShapes,
         buttonColors = buttonColors,
         onClick = { onClick() }
     ) {
@@ -106,6 +131,7 @@ fun ButtonIcon(
     iconVector: ImageVector = Icons.Outlined.PlayArrow,
     enabled: Boolean = true,
     isOutlined: Boolean = false,
+    useExpressiveShapes: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit
 ) {
@@ -113,12 +139,13 @@ fun ButtonIcon(
         modifier = modifier,
         enabled = enabled,
         isOutlined = isOutlined,
+        useExpressiveShapes = useExpressiveShapes,
         buttonColors = buttonColors,
         onClick = { onClick() }
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(20.dp)
+                .size(12.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = "Icon Button"
@@ -134,6 +161,7 @@ fun ButtonIconAndText(
     text: String = "",
     enabled: Boolean = true,
     isOutlined: Boolean = false,
+    useExpressiveShapes: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit
 ) {
@@ -141,19 +169,20 @@ fun ButtonIconAndText(
         modifier = modifier,
         enabled = enabled,
         isOutlined = isOutlined,
+        useExpressiveShapes = useExpressiveShapes,
         buttonColors = buttonColors,
         onClick = { onClick() }
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(20.dp)
+                .size(12.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.width(2.dp))
-        TextButtonAction(
-            modifier = Modifier.padding(start = AppTheme.dimens.paddingSmall),
+        Spacer(modifier = Modifier.width(1.sdp))
+        TextComponent(
+            modifier = Modifier.padding(start = 1.sdp),
             text = text
         )
     }
@@ -170,7 +199,7 @@ fun ButtonTopIconAndText(
 ) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(7.sdp))
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(bounded = true),
@@ -185,11 +214,11 @@ fun ButtonTopIconAndText(
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(modifier = Modifier.height(1.sdp))
         TextComponent(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(AppTheme.dimens.paddingTooSmall),
+                .padding(1.sdp),
             text = text,
             textAlign = TextAlign.Center,
             maxLines = 2
@@ -205,6 +234,7 @@ fun ButtonTextAndIcon(
     text: String = "",
     enabled: Boolean = true,
     isOutlined: Boolean = false,
+    useExpressiveShapes: Boolean = true,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit
 ) {
@@ -212,58 +242,93 @@ fun ButtonTextAndIcon(
         modifier = modifier,
         enabled = enabled,
         isOutlined = isOutlined,
+        useExpressiveShapes = useExpressiveShapes,
         buttonColors = buttonColors,
         onClick = { onClick() }
     ) {
         ImageHandlerVector(
             modifier = Modifier
-                .size(20.dp)
+                .size(12.sdp)
                 .aspectRatio(1f / 1f),
             image = iconVector,
             contentDescription = iconContentDescription
         )
-        Spacer(modifier = Modifier.width(2.dp))
-        TextButtonAction(
-            modifier = Modifier.padding(start = AppTheme.dimens.paddingSmall),
+        Spacer(modifier = Modifier.width(1.sdp))
+        TextComponent(
+            modifier = Modifier.padding(start = 1.sdp),
             text = text
         )
 
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ButtonBack(
     modifier: Modifier = Modifier
-        .width(50.dp)
-        .height(50.dp),
+        .width(30.sdp)
+        .height(30.sdp),
+    useExpressiveShapes: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-    IconButton(modifier = modifier.padding(10.dp), onClick = { onClick() }) {
-        ImageHandlerVector(
-            image = Icons.Default.ArrowCircleLeft,
-            contentDescription = "Back Button"
-        )
+    if (useExpressiveShapes) {
+        IconButton(
+            modifier = modifier.padding(6.sdp),
+            shapes = IconButtonDefaults.shapes(),
+            onClick = { onClick() }
+        ) {
+            ImageHandlerVector(
+                image = Icons.Default.ArrowCircleLeft,
+                contentDescription = "Back Button"
+            )
+        }
+    } else {
+        IconButton(
+            modifier = modifier.padding(6.sdp),
+            onClick = { onClick() }) {
+            ImageHandlerVector(
+                image = Icons.Default.ArrowCircleLeft,
+                contentDescription = "Back Button"
+            )
+        }
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ButtonClose(
     modifier: Modifier = Modifier,
+    useExpressiveShapes: Boolean = true,
     onClick: () -> Unit
 ) {
-    FilledTonalIconButton(
-        modifier = modifier
-            .size(24.dp),
-        onClick = { onClick() },
-        shape = IconButtonDefaults.filledShape
-    ) {
-        ImageHandlerVector(
-            image = Icons.Default.Close,
-            contentDescription = "Edit Button"
-        )
+    if (useExpressiveShapes) {
+        FilledTonalIconButton(
+            modifier = modifier
+                .size(14.sdp),
+            shapes = IconButtonDefaults.shapes(),
+            onClick = { onClick() },
+        ) {
+            ImageHandlerVector(
+                image = Icons.Default.Close,
+                contentDescription = "Edit Button"
+            )
+        }
+    } else {
+        FilledTonalIconButton(
+            modifier = modifier
+                .size(14.sdp),
+            onClick = { onClick() },
+            shape = IconButtonDefaults.filledShape
+        ) {
+            ImageHandlerVector(
+                image = Icons.Default.Close,
+                contentDescription = "Edit Button"
+            )
+        }
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ButtonAction(
     modifier: Modifier = Modifier,
@@ -271,16 +336,33 @@ fun ButtonAction(
     iconContentDescription: String = "",
     text: String = "",
     tint: Color = Color(0xFFFF9500),
+    useExpressiveShapes: Boolean = true,
     onClick: () -> Unit
 ) {
-    IconButton(onClick = onClick) {
-        ImageHandlerVector(
-            modifier = modifier
-                .size(24.dp)
-                .aspectRatio(1f / 1f),
-            image = iconVector,
-            tint = tint,
-            contentDescription = iconContentDescription
-        )
+    if (useExpressiveShapes) {
+        IconButton(
+            shapes = IconButtonDefaults.shapes(),
+            onClick = onClick
+        ) {
+            ImageHandlerVector(
+                modifier = modifier
+                    .size(14.sdp)
+                    .aspectRatio(1f / 1f),
+                image = iconVector,
+                tint = tint,
+                contentDescription = iconContentDescription
+            )
+        }
+    } else {
+        IconButton(onClick = onClick) {
+            ImageHandlerVector(
+                modifier = modifier
+                    .size(14.sdp)
+                    .aspectRatio(1f / 1f),
+                image = iconVector,
+                tint = tint,
+                contentDescription = iconContentDescription
+            )
+        }
     }
 }

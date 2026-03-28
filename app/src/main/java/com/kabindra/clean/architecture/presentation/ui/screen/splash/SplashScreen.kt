@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kabindra.clean.architecture.data.request.LoginRefreshUserDetailsDataRequest
 import com.kabindra.clean.architecture.domain.entity.User
@@ -45,6 +44,7 @@ import com.kabindra.inappupdate.exitApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import network.chaintech.sdpcomposemultiplatform.sdp
 import org.koin.compose.viewmodel.koinViewModel
 
 private var firebaseToken = ""
@@ -162,8 +162,8 @@ fun SplashScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         AppIcon(
             modifier = Modifier
-                .width(200.dp)
-                .height(200.dp)
+                .width(120.sdp)
+                .height(120.sdp)
                 .align(Alignment.Center)
         )
 
@@ -171,9 +171,12 @@ fun SplashScreen(
             LoadingIndicator(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp)
+                    .padding(
+                        start = 12.sdp,
+                        end = 12.sdp
+                    )
                     .align(Alignment.Center)
-                    .offset(y = 150.dp)
+                    .offset(y = 90.sdp)
             )
         }
 
@@ -181,7 +184,7 @@ fun SplashScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .offset(y = (-75).dp),
+                .offset(y = (-45).sdp),
             text = "Version: ${getPlatform().appVersion}",
             textAlign = TextAlign.Center
         )
@@ -194,7 +197,8 @@ fun SplashScreen(
     if (splashState.isLogged == true) {
         splashViewModel.onEvent(SplashEvent.GetUser)
     } else {
-        onNavigateLogin()
+        // onNavigateLogin()
+        onNavigateDashboard()
     }
 
     LaunchedEffect(splashState.user) {

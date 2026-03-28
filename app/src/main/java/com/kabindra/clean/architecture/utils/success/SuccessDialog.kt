@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
@@ -26,8 +25,8 @@ import com.kabindra.clean.architecture.R
 import com.kabindra.clean.architecture.presentation.ui.component.ButtonText
 import com.kabindra.clean.architecture.presentation.ui.component.ImageHandlerLottie
 import com.kabindra.clean.architecture.presentation.ui.component.TextComponent
-import com.kabindra.clean.architecture.presentation.ui.theme.AppTheme
 import kotlinx.coroutines.delay
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun GlobalSuccessDialog(
@@ -60,35 +59,35 @@ fun GlobalSuccessDialog(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppTheme.dimens.paddingSmall),
-                shape = RoundedCornerShape(16.dp),
+                    .padding(1.sdp),
+                shape = RoundedCornerShape(10.sdp),
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(AppTheme.dimens.paddingSmall)
+                        .padding(1.sdp)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     ImageHandlerLottie(
                         modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp),
+                            .width(60.sdp)
+                            .height(60.sdp),
                         image = composition,
                         contentDescription = ""
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(5.sdp))
                     TextComponent(
                         modifier = Modifier.fillMaxWidth(),
                         text = message,
                         textAlign = TextAlign.Center,
                         maxLines = 2
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(10.sdp))
                     if (isAction) {
                         Row(
                             modifier = Modifier
-                                .padding(AppTheme.dimens.paddingSmall)
+                                .padding(1.sdp)
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
@@ -96,7 +95,7 @@ fun GlobalSuccessDialog(
                             ButtonText(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(100.dp),
+                                    .width(60.sdp),
                                 text = "Ok",
                                 onClick = {
                                     openDialog.value = false

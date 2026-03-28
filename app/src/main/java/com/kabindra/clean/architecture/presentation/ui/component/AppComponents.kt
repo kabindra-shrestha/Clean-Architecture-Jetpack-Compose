@@ -6,14 +6,14 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.kabindra.clean.architecture.R
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun AppIcon(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp)
+        .width(150.sdp)
+        .height(150.sdp)
 ) {
     ImageHandlerRes(
         modifier = modifier,
@@ -25,8 +25,8 @@ fun AppIcon(
 @Composable
 fun AppIconFilled(
     modifier: Modifier = Modifier
-        .width(163.dp)
-        .height(63.dp)
+        .width(98.sdp)
+        .height(38.sdp)
 ) {
     ImageHandlerRes(
         modifier = modifier,

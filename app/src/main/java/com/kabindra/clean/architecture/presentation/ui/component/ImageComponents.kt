@@ -23,18 +23,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.compose.LottieAnimation
 import com.kabindra.clean.architecture.R
 import com.kabindra.clean.architecture.presentation.ui.theme.transparent
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun ImageHandlerURL(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: String = "",
     contentDescription: String = "",
     contentScale: ContentScale = ContentScale.Fit,
@@ -79,8 +79,8 @@ fun ImageHandlerURL(
 @Composable
 fun ImageHandlerRes(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: Int = R.drawable.splash_icon,
     contentDescription: String = "",
     circular: Boolean = false,
@@ -105,8 +105,8 @@ fun ImageHandlerRes(
 @Composable
 fun ImageHandlerVector(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: ImageVector?,
     contentDescription: String = "",
     tint: Color? = null,
@@ -140,8 +140,8 @@ fun ImageHandlerVector(
 @Composable
 fun ImageHandlerLottie(
     modifier: Modifier = Modifier
-        .width(250.dp)
-        .height(250.dp),
+        .width(150.sdp)
+        .height(150.sdp),
     image: LottieComposition?,
     contentDescription: String = "",
     circular: Boolean = false,

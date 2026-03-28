@@ -23,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import network.chaintech.sdpcomposemultiplatform.sdp
 
-
 enum class ExpressiveCarouselVariant {
     MULTI_BROWSE,
     UNCONTAINED,

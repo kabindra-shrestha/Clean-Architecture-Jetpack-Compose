@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import network.chaintech.sdpcomposemultiplatform.sdp
 
-
 @Composable
 fun CheckboxCustom(
     modifier: Modifier = Modifier,

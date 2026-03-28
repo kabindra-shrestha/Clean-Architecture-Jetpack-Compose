@@ -1,5 +1,7 @@
 package com.kabindra.clean.architecture.presentation.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF0D9488)
@@ -113,6 +115,10 @@ val textSelected = Color(0xFFFFFFFF)
 val textUnselected = Color(0xFF636363)
 
 // Light Theme Colors
-
+val customLight = Color(0xFFB7FFD2)
 
 // Dark Theme Colors
+val customDark = Color(0xFFB7FFD2)
+
+@Composable
+fun custom() = if (isSystemInDarkTheme()) customDark else customLight

@@ -1,6 +1,5 @@
 package com.kabindra.clean.architecture.presentation.ui.component
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -310,4 +309,3 @@ fun <T> HorizontalPagersWithTabs(
         }
     }
 }
-
